@@ -1,0 +1,13 @@
+export {default as LoginPage} from './Login';
+export {default as PostPage} from './Post';
+export {default as PostsPage} from './Posts';
+export {default as UserPage} from './User';
+export {default as UsersPage} from './Users';
+export {default as HomePage} from './Home';
+export {default as RegisterPage} from './Registrazione';
+export {default as SubUserPage} from './SubUser';
+export {default as ProfilePage} from './Profilo';
+export {default as CreatePostPage} from './CreaPost';
+export {default as CreateUserPage} from './CreateUser';
+export {default as UpdatePostPage} from './UpdatePost';
+export {default as UpdateUserPage} from './UpdateUser';
