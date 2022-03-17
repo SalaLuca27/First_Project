@@ -8,6 +8,9 @@ import AppRoutes from './Routes';
 import { Provider } from 'react-redux';
 import {store} from './Store/applicationStore';
 import ReactDOM from 'react-dom';
+import Amplify from 'aws-amplify';
+import config from './aws-exports';
+Amplify.configure(config);
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
 
