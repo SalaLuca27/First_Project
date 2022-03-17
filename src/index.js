@@ -7,6 +7,7 @@ import { getMainDefinition } from 'apollo-link-ws/node_modules/apollo-utilities'
 import AppRoutes from './Routes';
 import { Provider } from 'react-redux';
 import {store} from './Store/applicationStore';
+import App from './App';
 import ReactDOM from 'react-dom';
 import Amplify from 'aws-amplify';
 import config from './aws-exports';
@@ -53,12 +54,13 @@ const client = new ApolloClient({
 });
 
 
-function App() {
+function Appp() {
   return (
     <div>
       <Provider store={store}>
           <AppRoutes />
       </Provider>
+      <App />
     </div>
   );
 }
@@ -66,10 +68,10 @@ function App() {
 ReactDOM.render(
 
   <ApolloProvider client={client}>
-      <App />
+      <App />,
   </ApolloProvider>,
   document.getElementById('root'),
 );
 
 
-export default App
+export default Appp
