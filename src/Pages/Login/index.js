@@ -4,7 +4,6 @@ const LoginPage = () => {
 
     return(
         <div>
-            <h2>LOGIN PAGE</h2>
             <Login />
         </div>
     )

@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { ROUTES } from "../Utils/routes";
+import '../css/login.css';
 import { gql, useMutation } from '@apollo/client';
 
 const LoginUser = () => {    
