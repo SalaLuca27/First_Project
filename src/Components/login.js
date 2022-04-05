@@ -2,7 +2,8 @@ import {useState, useEffect} from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { ROUTES } from "../Utils/routes";
 import '../css/login.css';
-import { gql, useMutation } from '@apollo/client';
+// import { gql, useMutation } from '@apollo/client';
+import { Auth } from 'aws-amplify';
 
 const LoginUser = () => {    
 
@@ -10,11 +11,12 @@ const LoginUser = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [token, setToken] = useState("");
+    const [error, setError] = useState(false);
     
-    const LOGIN = gql`
-        mutation Login($username: String!, $password: String!) {
-            login(username: $username, password: $password)
-        }`;
+    // const LOGIN = gql`
+    //     mutation Login($username: String!, $password: String!) {
+    //         login(username: $username, password: $password)
+    //     }`;
 
     const handleChange = (event) => {
         if(event.target.name === 'username') {
@@ -24,11 +26,16 @@ const LoginUser = () => {
         }
     }
 
-    const [login, {loading}] = useMutation(LOGIN, {variables : {'username' : username, 'password' : password}});
+    // const [login, {loading}] = useMutation(LOGIN, {variables : {'username' : username, 'password' : password}});
 
     const handleClick = async(event) => {
-        event.preventDefault();
-        await login().then( (ret) => {setToken(ret.data.login)});
+        if(username === '' || password === ''){
+            setError(true);
+        }else{
+            event.preventDefault();
+            const user = Auth.signIn(username, password);
+            console.log(user.then((data)=> setToken(data.signInUserSession.accessToken.jwtToken)));
+        }
     }
 
     useEffect(() => {
@@ -39,24 +46,18 @@ const LoginUser = () => {
         }
     },[token, navigate]);
 
-    if(loading) return <h1>Loading...</h1>
-
     return (
         <div className="form">
-            {token === 'error' ? (
-                <div className="errorLogin">
-                    <h3 id="titleEL">Utente non trovato!</h3>
-                </div>
-            ) : ""
-            }
             <form>
+                {error ? 'Errore nella login' : ''}
+                <br/>
                 <div className="mb-3">
                     <label className="form-label">Username</label>
                     <input type="text" className="form-control" placeholder="username" name="username" onChange={handleChange} required/>
                 </div>
                 <div className="mb-3">
                     <label className="form-label">Password</label>
-                    <input type="password" className="form-control" placeholder="password" name="password" onChange={handleChange} autoComplete="on" required/>
+                    <input type="password" className="form-control" placeholder="password" name="password" onChange={handleChange} required/>
                 </div>
                 <div className = "buttonContainer">
                     <button className="btn btn-primary" onClick={handleClick}>Accedi</button>

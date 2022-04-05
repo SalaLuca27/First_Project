@@ -3,6 +3,7 @@ import {Link, Outlet, useNavigate} from 'react-router-dom';
 import { ROUTES } from '../Utils/routes';
 
 import '../css/sidebar.css'
+import { Auth } from 'aws-amplify';
 
 const Sidebar = () => {
     const navigate = useNavigate();
@@ -24,6 +25,7 @@ const Sidebar = () => {
         localStorage.setItem('userPostId', '');
         localStorage.setItem('token', '');
         localStorage.setItem('postId', '');
+        Auth.signOut();
         navigate(ROUTES.login);
     }
 
