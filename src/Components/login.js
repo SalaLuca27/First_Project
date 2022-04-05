@@ -34,7 +34,13 @@ const LoginUser = () => {
         }else{
             event.preventDefault();
             const user = Auth.signIn(username, password);
-            console.log(user.then((data)=> setToken(data.signInUserSession.accessToken.jwtToken)));
+            user
+            .then((data) => setToken(data.signInUserSession.accessToken.jwtToken))
+            .catch((error) => {if(error){setError(true)}})
+        }
+
+        if(!error){
+            alert('Verificare che tutti i campi inseriti siano corretti')
         }
     }
 
@@ -49,7 +55,6 @@ const LoginUser = () => {
     return (
         <div className="form">
             <form>
-                {error ? 'Errore nella login' : ''}
                 <br/>
                 <div className="mb-3">
                     <label className="form-label">Username</label>
