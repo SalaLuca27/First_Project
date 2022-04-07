@@ -1,6 +1,5 @@
 import React from 'react';
 import {ApolloClient, InMemoryCache, ApolloProvider, HttpLink, ApolloLink } from "@apollo/client";
-// import { WebSocketLink } from 'apollo-link-ws';
 import { split } from 'apollo-boost';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { getMainDefinition } from 'apollo-link-ws/node_modules/apollo-utilities';
@@ -38,19 +37,12 @@ const authLink = new ApolloLink((operation, forward) => {
   return forward(operation);
 });
 
-// const wsLink = new WebSocketLink({
-//   uri:'ws://localhost:5000/graphql',
-//   options: {
-//     reconnect: true,
-//   }
-// })
 
 const link = split(
   ({query}) => {
     const definition = getMainDefinition(query);
     return (definition.kind === 'OperationDefinition' && definition.operation === 'subscription');
   },
-  // wsLink,
   httpLink
 )
 
