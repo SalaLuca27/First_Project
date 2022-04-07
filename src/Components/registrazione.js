@@ -67,7 +67,7 @@ const Registrazione = () => {
 
     const confirm = async() => {
         if(code.length !== 6 || code === ''){
-            throw alert('Incorrect code');
+            throw alert('OTP code must have 6 characters');
         }
 
         await Auth.confirmSignUp(username, code)
@@ -119,7 +119,7 @@ const Registrazione = () => {
 
             : 
             
-                <form>
+                <>
                     <div className="mb-3">
                         <label className="form-label">Inserici codice OTP</label>
                         <input type="text" className="form-control" name="code" placeholder="000000" onChange={(event)=>setCode(event.target.value)} required/>
@@ -127,7 +127,7 @@ const Registrazione = () => {
                     <div className = "buttonContainer">
                         <button className="btn btn-primary" onClick={confirm}>Conferma codice</button>
                     </div>
-                </form>
+                </>
 
             }
         </div>
