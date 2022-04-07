@@ -40,7 +40,7 @@ const Registrazione = () => {
         }
         if(password.length >= 8){
             if(password === verifyPassword){
-                const user = Auth.signUp(username, password, email);
+                let user = Auth.signUp(username, password, email);
                 console.log('user:', user);
                 user
                     .then((data) => {
@@ -58,29 +58,28 @@ const Registrazione = () => {
                     })
             }
             else{
-                alert('Password is not the same')
+                alert('Password is not the same');
             }
         }else{
             alert('Password must be composed by 8 characters');
         }
     }
 
-    const confirm = () => {
+    const confirm = async() => {
         if(code.length !== 6 || code === ''){
             throw alert('Incorrect code');
         }
 
-        const user = Auth.confirmSignUp(username, code);
-        user
-            .then((data)=> {
-                console.log('dataConfirm:', data)
+        await Auth.confirmSignUp(username, code)
+            .then((data)=>{
+                console.log('dataConfirm:', data);
                 navigate(ROUTES.login);
             })
-            .catch((error)=> {
+            .catch((error)=>{
                 console.log('errorConfirm:', error);
                 alert('OTP code not correct');
+                navigate(ROUTES.registrazione);
             })
-        
     }
 
     return (
@@ -123,10 +122,10 @@ const Registrazione = () => {
                 <form>
                     <div className="mb-3">
                         <label className="form-label">Inserici codice OTP</label>
-                        <input type="text" className="form-control" name="code" onChange={(event)=>setCode(event.target.value)} />
+                        <input type="text" className="form-control" name="code" placeholder="000000" onChange={(event)=>setCode(event.target.value)} required/>
                     </div>
                     <div className = "buttonContainer">
-                        <button id= "button" className="btn btn-primary" onClick={confirm}>Conferma codice</button>
+                        <button className="btn btn-primary" onClick={confirm}>Conferma codice</button>
                     </div>
                 </form>
 
