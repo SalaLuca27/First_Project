@@ -1,20 +1,19 @@
 import {useState} from 'react'
 import {Link, Outlet, useNavigate} from 'react-router-dom';
 import { ROUTES } from '../Utils/routes';
-
 import '../css/sidebar.css'
 import { Auth } from 'aws-amplify';
 
 const Sidebar = () => {
     const navigate = useNavigate();
     const [sidebarIsOpen, setSidebarIsOpen] = useState(true);
-
     const handleSidebar = () => {
         setSidebarIsOpen(!sidebarIsOpen);
     }
 
     const handleClick = (event) => {
-        navigate(ROUTES.event.target.name);
+        // navigate(ROUTES.event.target.name);
+        navigate('/' + event.target.name);
         window.location.reload();
     }
 
@@ -39,7 +38,7 @@ const Sidebar = () => {
                         <li></li>
                         <li></li>
                         <li className='sidebarLI'>
-                            <Link className='sidebarLink' to={ROUTES.home} onClick={handleClick} name = 'home'>HOME</Link>
+                            <Link className='sidebarLink' to={ROUTES.home} onClick={handleClick} name = ''>HOME</Link>
                         </li>
                         <li className="sidebarLI">
                             <Link className="sidebarLink" to={ROUTES.users} onClick={handleClick} name = "users">Users</Link>
