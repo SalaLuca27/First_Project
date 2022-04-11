@@ -37,11 +37,16 @@ const ForgotPassword = () => {
         }
         if(password.length >= 8){
             if(password === verifyPassword){
-                let user = Auth.forgotPasswordSubmit(username. code, password);
+                let user = Auth.forgotPasswordSubmit(username, code, password);
                 console.log('user:', user);
                 user
                     .then(navigate(ROUTES.login))
-                    .catch()
+                    .catch((error) => {
+                        console.log('error:', error);
+                        if(error.code === 'CodeMismatchException'){
+                            throw alert('Wrong OTP insert');
+                        }
+                    })
             }
             else{
                 alert('Password is not the same');
