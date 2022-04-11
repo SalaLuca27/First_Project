@@ -11,3 +11,4 @@ export {default as CreatePostPage} from './CreaPost';
 export {default as CreateUserPage} from './CreateUser';
 export {default as UpdatePostPage} from './UpdatePost';
 export {default as UpdateUserPage} from './UpdateUser';
+export {default as ForgotPasswordPage} from './ForgotPassword';

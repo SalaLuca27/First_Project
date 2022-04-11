@@ -12,6 +12,7 @@ export const ROUTES = {
     createUser: '/createUser',
     updatePost: '/updatePost',
     updateUser: '/updateUser',
+    forgotPassword: '/forgotPassword',
 }
 
 export const SIDEBAR_LINK = {
@@ -27,4 +28,5 @@ export const SIDEBAR_LINK = {
     createUser: ROUTES.createUser,
     updatePost: ROUTES.updatePost,
     updateUser: ROUTES.updateUser,
+    forgotPassword: ROUTES.forgotPassword,
 }

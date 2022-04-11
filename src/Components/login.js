@@ -19,6 +19,9 @@ const LoginUser = () => {
         }
     }
 
+    // Auth.forgotPassword(username);
+    // Auth.forgotPasswordSubmit(username,code,newPassword);
+
     const handleClick = async(event) => {
         if(username === '' || password === ''){
             alert('Compilare tutti i campi');
@@ -59,6 +62,9 @@ const LoginUser = () => {
                 <div className = "buttonContainer">
                     <button className="btn btn-primary" onClick={handleClick}>Accedi</button>
                 </div>
+                <Link className="nav-item nav-link" to={{pathname : ROUTES.forgotPassword}}>
+                    Forgot Password
+                </Link>
                 <div>
                 <p id="p-registrazione">
                     Non hai ancora un account? 

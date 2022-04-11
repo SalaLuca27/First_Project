@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Navigate, Outlet, Routes } from "react-router-dom";
-import {UsersPage, UserPage, PostsPage, PostPage, LoginPage, HomePage, RegisterPage, SubUserPage, ProfilePage, CreatePostPage, CreateUserPage, UpdatePostPage, UpdateUserPage} from '../Pages';
+import {UsersPage, UserPage, PostsPage, PostPage, LoginPage, HomePage, RegisterPage, SubUserPage, ProfilePage, CreatePostPage, CreateUserPage, UpdatePostPage, UpdateUserPage, ForgotPasswordPage} from '../Pages';
 import {ROUTES} from '../Utils/routes';
 import Sidebar from "../Components/Sidebar";
 
@@ -32,6 +32,7 @@ const AppRoutes = () => {
                 </Route>
                 <Route path = {ROUTES.login} element = {<LoginPage />} />
                 <Route path = {ROUTES.registrazione} element = {<RegisterPage />} />
+                <Route path = {ROUTES.forgotPassword} element = {<ForgotPasswordPage />} />
             </Routes>
         </BrowserRouter>
     )
