@@ -40,7 +40,7 @@ const ForgotPassword = () => {
                 let user = Auth.forgotPasswordSubmit(username. code, password);
                 console.log('user:', user);
                 user
-                    .then()
+                    .then(navigate(ROUTES.login))
                     .catch()
             }
             else{
@@ -96,6 +96,9 @@ const ForgotPassword = () => {
                     <div className = "buttonContainer">
                         <button className="btn btn-primary" onClick={sendCode}>Invia codice</button>
                     </div>
+                    <Link className="nav-item nav-ink" to={{pathname : ROUTES.login}}>
+                        Back to login
+                    </Link>
                 </>
 
             }
