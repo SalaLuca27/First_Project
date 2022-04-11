@@ -40,7 +40,7 @@ const ForgotPassword = () => {
                 let user = Auth.forgotPasswordSubmit(username. code, password);
                 console.log('user:', user);
                 user
-                    .then(navigate(ROUTES.login))
+                    .then()
                     .catch()
             }
             else{
@@ -91,14 +91,11 @@ const ForgotPassword = () => {
                 <>
                     <div className="mb-3">
                         <label className="form-label">Inserisci username</label>
-                        <input type="text" className="form-control" name="username" placeholder="username" onChange={(event)=>setUsername(event.target.value)} required/>
+                        <input type="text" className="form-control" name="code" placeholder="username" onChange={(event)=>setUsername(event.target.value)} required/>
                     </div>
                     <div className = "buttonContainer">
                         <button className="btn btn-primary" onClick={sendCode}>Invia codice</button>
                     </div>
-                    <Link className="nav-item nav-ink" to={{pathname : ROUTES.login}}>
-                        Back to login
-                    </Link>
                 </>
 
             }
