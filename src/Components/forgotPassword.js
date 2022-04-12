@@ -53,7 +53,7 @@ const ForgotPassword = () => {
                             handleClick();
                         }
                     })
-            }
+                }
             else{
                 alert('Password is not the same');
             }
@@ -112,7 +112,6 @@ const ForgotPassword = () => {
                         Back to login
                     </Link>
                 </>
-
             }
         </div>
     )
