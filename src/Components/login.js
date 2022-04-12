@@ -27,7 +27,7 @@ const LoginUser = () => {
             alert('Compilare tutti i campi');
         }else{
             event.preventDefault();
-            await Auth.signIn(username, password)
+            await Auth.signIn(username.trim(), password.trim())
                 .then((data) => {
                     setToken(data.signInUserSession.accessToken.jwtToken);
                 })

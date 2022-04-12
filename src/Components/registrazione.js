@@ -40,7 +40,7 @@ const Registrazione = () => {
         }
         if(password.length >= 8){
             if(password === verifyPassword){
-                let user = Auth.signUp(username, password, email);
+                let user = Auth.signUp(username.trim(), password.trim(), email.trim());
                 console.log('user:', user);
                 user
                     .then((data) => {
@@ -67,10 +67,11 @@ const Registrazione = () => {
 
     const confirm = async() => {
         if(code.length !== 6 || code === ''){
-            throw alert('OTP code must have 6 characters');
+            alert('OTP code must have 6 characters');
+            confirm();
         }
 
-        await Auth.confirmSignUp(username, code)
+        await Auth.confirmSignUp(username.trim(), code.trim())
             .then((data)=>{
                 console.log('dataConfirm:', data);
                 navigate(ROUTES.login);

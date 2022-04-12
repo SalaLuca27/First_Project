@@ -37,14 +37,20 @@ const ForgotPassword = () => {
         }
         if(password.length >= 8){
             if(password === verifyPassword){
-                let user = Auth.forgotPasswordSubmit(username, code, password);
+                let user = Auth.forgotPasswordSubmit(username.trim(), code.trim(), password.trim());
                 console.log('user:', user);
                 user
-                    .then(navigate(ROUTES.login))
+                    .then((data) => {
+                        console.log('dataThen:', data);
+                        if(data === 'SUCCESS'){
+                            navigate(ROUTES.login);
+                        }
+                    })
                     .catch((error) => {
                         console.log('error:', error);
                         if(error.code === 'CodeMismatchException'){
-                            throw alert('Wrong OTP insert');
+                            alert('Wrong OTP insert');
+                            handleClick();
                         }
                     })
             }
@@ -58,7 +64,7 @@ const ForgotPassword = () => {
 
     const sendCode = async() => {
 
-        await Auth.forgotPassword(username)
+        await Auth.forgotPassword(username.trim())
             .then((data)=>{
                 console.log('data:', data);
                 setOpenForm(false);
