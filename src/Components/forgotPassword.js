@@ -7,13 +7,9 @@ import { Auth } from "aws-amplify";
 
 const ForgotPassword = () => {
 
-
-    //modificare questo file, pages/ForgotPassword/index.js e aggiungere il path alle rotte di navigazione nelle costanti
-    //inserire lo user, invio autoamtico della mail con il codice, inserimento del codice e poi le due nuove password
-
     const navigate = useNavigate();
     const [verifyPassword, setVerifyPassword] = useState("");
-    const [username, setUsername] = useState("");
+    const [username, setUsername] = ("");
     const [password, setPassword] = useState("");
     const [openForm, setOpenForm] = useState(true);
     const [code, setCode] = useState("");

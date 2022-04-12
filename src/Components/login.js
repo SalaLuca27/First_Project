@@ -19,9 +19,6 @@ const LoginUser = () => {
         }
     }
 
-    // Auth.forgotPassword(username);
-    // Auth.forgotPasswordSubmit(username,code,newPassword);
-
     const handleClick = async(event) => {
         if(username === '' || password === ''){
             alert('Compilare tutti i campi');
