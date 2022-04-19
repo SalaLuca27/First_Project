@@ -1,0 +1,66 @@
+# This "input" configures a global authorization rule to enable public access to
+# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
+input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
+
+# type Blog @model {
+#   id: ID!
+#   name: String!
+#   posts: [Post] @hasMany
+# }
+
+# type Post @model {
+#   id: ID!
+#   title: String!
+#   blog: Blog @belongsTo
+#   comments: [Comment] @hasMany
+# }
+
+# type Comment @model {
+#   id: ID!
+#   post: Post @belongsTo
+#   content: String!
+# }
+
+
+type User @model {
+  id: ID!
+  name: String!
+  surname: String!
+  age: Int!
+  username: String!
+  password: String!
+  posts: [Post] @hasMany
+}
+
+type Post @model {
+  id: ID!
+  description: String!
+  userId: User @belongsTo
+}
+
+type Query {
+  users: [User!]!
+  user(id: ID!) : User!
+  me: User!
+  posts: [Post!]!
+  post(id: ID!) : Post!
+}
+
+type Mutation {
+  login(username: String!, password: String!) : String!
+  create(name: String!, surname: String!, age: Int!, username: String!, password: String!): User!
+  remove(id: ID!) : Boolean!
+  update(id: ID!, username: String!) : User!
+  newPost(description: String!) : Post!
+  modifyPost(id: ID!, description: String!, userId: ID!) : Post!
+  removePost(id: ID!) : Boolean!
+}
+
+type Subscription {
+  postCreated: Post!
+  postUpdated: Post!
+  postDeleted: Post!
+  userCreated: User!
+  userUpdated: User!
+  userDeleted: User!
+}
