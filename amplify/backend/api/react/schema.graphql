@@ -39,7 +39,9 @@ type Post @model {
 }
 
 type Query {
-  users: [User!]!
+  users: [User!]! 
+    @function(name: "getUsers-${env}")
+    
   user(id: ID!) : User!
   me: User!
   posts: [Post!]!
@@ -48,7 +50,10 @@ type Query {
 
 type Mutation {
   login(username: String!, password: String!) : String!
+
   create(name: String!, surname: String!, age: Int!, username: String!, password: String!): User!
+   @function(name: "createUser-${env}")
+  
   remove(id: ID!) : Boolean!
   update(id: ID!, username: String!) : User!
   newPost(description: String!) : Post!

@@ -14,6 +14,16 @@
     "categories": {
       "auth": {
         "react7e96a9db": {}
+      },
+      "function": {
+        "createUser": {
+          "deploymentBucketName": "amplify-amplify6a7bb416950c4-staging-103344-deployment",
+          "s3Key": "amplify-builds/createUser-6b55444949306d63734a-build.zip"
+        },
+        "getUsers": {
+          "deploymentBucketName": "amplify-amplify6a7bb416950c4-staging-103344-deployment",
+          "s3Key": "amplify-builds/getUsers-65655a696143304f3862-build.zip"
+        }
       }
     }
   }

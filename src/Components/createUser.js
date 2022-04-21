@@ -3,6 +3,7 @@ import { useState } from "react";
 import { gql } from "apollo-boost";
 import { useMutation } from "@apollo/client";
 import { useNavigate } from "react-router-dom";
+import { create } from "../graphql/mutations";
 
 const CreateUser = () => {
 
@@ -25,6 +26,9 @@ const CreateUser = () => {
             username
         }
     }`;
+
+
+    // create(name, surname, age, username, password);
 
 
     const handleChange = (event) => {

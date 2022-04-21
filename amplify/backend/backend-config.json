@@ -47,22 +47,31 @@
     }
   },
   "function": {
-    "myLambdaFunction": {
+    "createUser": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda",
       "dependsOn": [
         {
-          "category": "storage",
-          "resourceName": "user",
+          "category": "api",
+          "resourceName": "react",
           "attributes": [
-            "Name",
-            "Arn"
-          ],
-          "attributeEnvMap": {
-            "Name": "TABLE_NAME",
-            "Arn": "TABLE_ARN"
-          }
+            "GraphQLAPIIdOutput"
+          ]
+        }
+      ]
+    },
+    "getUsers": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "api",
+          "resourceName": "react",
+          "attributes": [
+            "GraphQLAPIIdOutput"
+          ]
         }
       ]
     }
