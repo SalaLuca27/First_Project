@@ -23,15 +23,16 @@
 // };
 
 
-//lambda per la mutation createUser ==> create
+//lambda per la mutation createUser ==> create\
 const AWS = require('aws-sdk');
 const dynamo = new AWS.DynamoDB.DocumentClient({region: "us-east-1"});
 
 
-exports.handler = ({name, surname, age, username, password}, context, callback) => {
+exports.handler = async ({name, surname, age, username, password}, context, callback) => {
     console.log("Processing...");
     const params = {
         Item: {
+            id: Date.now().toString(),
             name: name,
             surname: surname,
             age: age,
@@ -40,28 +41,12 @@ exports.handler = ({name, surname, age, username, password}, context, callback) 
         },
         TableName: "User-zxzpbzksgzhmlfyzozcol6p5ge-staging"
     };
-
-    const response = {
-    statusCode: 200,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Credentials': true,
-    },
-    body: JSON.stringify(params.Item),
-  };
     
-    const res = await dynamo.put(params, function(err, data) {
+    await dynamo.put(params, function(err, data) {
         if(err){
             callback(err, null);
         } else {
             callback(null, data);
         }
-    })
-
-    if(!res){
-        console.log('Errore inserimento utente');
-    }
-    else{
-        return data;
-    }
+    }).promise();
 };

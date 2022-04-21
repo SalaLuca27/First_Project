@@ -1,12 +1,13 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
+import { gql } from "apollo-boost";
 
-export const login = /* GraphQL */ `
+export const login = gql `
   mutation Login($username: String!, $password: String!) {
     login(username: $username, password: $password)
   }
 `;
-export const create = /* GraphQL */ `
+export const create = gql `
   mutation Create(
     $name: String!
     $surname: String!
@@ -42,12 +43,12 @@ export const create = /* GraphQL */ `
     }
   }
 `;
-export const remove = /* GraphQL */ `
+export const remove = gql `
   mutation Remove($id: ID!) {
     remove(id: $id)
   }
 `;
-export const update = /* GraphQL */ `
+export const update = gql `
   mutation Update($id: ID!, $username: String!) {
     update(id: $id, username: $username) {
       id
@@ -71,7 +72,7 @@ export const update = /* GraphQL */ `
     }
   }
 `;
-export const newPost = /* GraphQL */ `
+export const newPost = gql `
   mutation NewPost($description: String!) {
     newPost(description: $description) {
       id
@@ -95,7 +96,7 @@ export const newPost = /* GraphQL */ `
     }
   }
 `;
-export const modifyPost = /* GraphQL */ `
+export const modifyPost = gql `
   mutation ModifyPost($id: ID!, $description: String!, $userId: ID!) {
     modifyPost(id: $id, description: $description, userId: $userId) {
       id
@@ -119,12 +120,12 @@ export const modifyPost = /* GraphQL */ `
     }
   }
 `;
-export const removePost = /* GraphQL */ `
+export const removePost = gql `
   mutation RemovePost($id: ID!) {
     removePost(id: $id)
   }
 `;
-export const createUser = /* GraphQL */ `
+export const createUser = gql `
   mutation CreateUser(
     $input: CreateUserInput!
     $condition: ModelUserConditionInput
@@ -151,7 +152,7 @@ export const createUser = /* GraphQL */ `
     }
   }
 `;
-export const updateUser = /* GraphQL */ `
+export const updateUser = gql `
   mutation UpdateUser(
     $input: UpdateUserInput!
     $condition: ModelUserConditionInput
@@ -178,7 +179,7 @@ export const updateUser = /* GraphQL */ `
     }
   }
 `;
-export const deleteUser = /* GraphQL */ `
+export const deleteUser = gql `
   mutation DeleteUser(
     $input: DeleteUserInput!
     $condition: ModelUserConditionInput
@@ -205,7 +206,7 @@ export const deleteUser = /* GraphQL */ `
     }
   }
 `;
-export const createPost = /* GraphQL */ `
+export const createPost = gql `
   mutation CreatePost(
     $input: CreatePostInput!
     $condition: ModelPostConditionInput
@@ -232,7 +233,7 @@ export const createPost = /* GraphQL */ `
     }
   }
 `;
-export const updatePost = /* GraphQL */ `
+export const updatePost = gql `
   mutation UpdatePost(
     $input: UpdatePostInput!
     $condition: ModelPostConditionInput
@@ -259,7 +260,7 @@ export const updatePost = /* GraphQL */ `
     }
   }
 `;
-export const deletePost = /* GraphQL */ `
+export const deletePost = gql `
   mutation DeletePost(
     $input: DeletePostInput!
     $condition: ModelPostConditionInput

@@ -18,11 +18,11 @@
       "function": {
         "createUser": {
           "deploymentBucketName": "amplify-amplify6a7bb416950c4-staging-103344-deployment",
-          "s3Key": "amplify-builds/createUser-6b55444949306d63734a-build.zip"
+          "s3Key": "amplify-builds/createUser-4e7a345a687474516b57-build.zip"
         },
         "getUsers": {
           "deploymentBucketName": "amplify-amplify6a7bb416950c4-staging-103344-deployment",
-          "s3Key": "amplify-builds/getUsers-65655a696143304f3862-build.zip"
+          "s3Key": "amplify-builds/getUsers-4c526367374d386f435a-build.zip"
         }
       }
     }

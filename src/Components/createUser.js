@@ -1,6 +1,5 @@
 import { ROUTES } from "../Utils/routes";
 import { useState } from "react";
-import { gql } from "apollo-boost";
 import { useMutation } from "@apollo/client";
 import { useNavigate } from "react-router-dom";
 import { create } from "../graphql/mutations";
@@ -14,22 +13,6 @@ const CreateUser = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [errore, setErrore] = useState(false);
-
-    const CREATE = gql`
-    mutation Create($name: String!, $surname: String!, $age: Int!, $username: String!, $password: String!) {
-        create(name: $name, surname: $surname, age: $age, username: $username, password: $password) {
-            id
-            name
-            surname
-            age
-            password
-            username
-        }
-    }`;
-
-
-    // create(name, surname, age, username, password);
-
 
     const handleChange = (event) => {
         if(event.target.name === 'name'){
@@ -49,7 +32,7 @@ const CreateUser = () => {
         }
     }
 
-    const [createUser, {error}] = useMutation(CREATE,{variables: {'name' : name, 'surname': surname, 'age': parseInt(age), 
+    const [createUser, {error}] = useMutation(create,{variables: {'name' : name, 'surname': surname, 'age': parseInt(age), 
     'username': username, 'password': password}})
 
     const handleClick = (event) => {
