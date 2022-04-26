@@ -11,13 +11,13 @@ var dbclient = new AWS.DynamoDB.DocumentClient({region: "us-east-1"});
 var utenti = {};
 var success = true;
 
-exports.handler = async(event, context, callback) => {
+exports.handler = async({id}, context, callback) => {
     let params = {
-        TableName: "User-zxzpbzksgzhmlfyzozcol6p5ge-staging",
-        Limit: 100
-    }
+        Key : {id : id},
+        TableName: "User-zxzpbzksgzhmlfyzozcol6p5ge-staging"
+    };
 
-    await dbclient.scan(params, (err, data) => {
+    await dbclient.delete(params, (err, data) => {
         if(err){
             success = false;
             //callback(err, null);
@@ -36,7 +36,7 @@ exports.handler = async(event, context, callback) => {
                 "Access-Control-Allow-Origin": "*",
                 "Access-Control-Allow-Headers": "*"
             },
-            body : utenti
+            body : 'Utente eliminato'
         }
     }
     else{

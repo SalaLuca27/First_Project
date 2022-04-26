@@ -6,27 +6,10 @@
 // 	REGION
 // Amplify Params - DO NOT EDIT */
 
-// /**
-//  * @type {import('@types/aws-lambda').APIGatewayProxyHandler}
-//  */
-// exports.handler = async (event) => {
-//     console.log(`EVENT: ${JSON.stringify(event)}`);
-//     return {
-//         statusCode: 200,
-//     //  Uncomment below to enable CORS requests
-//     //  headers: {
-//     //      "Access-Control-Allow-Origin": "*",
-//     //      "Access-Control-Allow-Headers": "*"
-//     //  }, 
-//         body: JSON.stringify('Hello from Lambda!'),
-//     };
-// };
-
-
-//lambda per la mutation createUser ==> create\
+//lambda per la mutation createUser ==> create
 const AWS = require('aws-sdk');
 const dynamo = new AWS.DynamoDB.DocumentClient({region: "us-east-1"});
-
+var success = true;
 
 exports.handler = async ({name, surname, age, username, password}, context, callback) => {
     console.log("Processing...");
@@ -44,17 +27,32 @@ exports.handler = async ({name, surname, age, username, password}, context, call
     
     await dynamo.put(params, function(err, data) {
         if(err){
-            callback(err, null);
+            //callback(err, null);
+            success = false;
         } else {
-            callback(null, data);
-                return {
-                    statusCode: 200,
-                 headers: {
-                     "Access-Control-Allow-Origin": "*",
-                     "Access-Control-Allow-Headers": "*"
-                 }, 
-                    body: JSON.stringify('SUCCESS'),
-                };
+            //callback(null, data);
+            success = true;
         }
     }).promise();
+    
+    if(success){
+        return {
+            statusCode: 200,
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Headers": "*"
+            }, 
+            body: 'SUCCESS',
+        };
+    }
+    else{
+        return {
+            statusCode: 400,
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Headers": "*"
+            }, 
+            body: 'ERROR',
+        };
+    }
 };

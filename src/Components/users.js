@@ -11,10 +11,14 @@ const Users = () =>  {
 
     const { loading, error, data } = useQuery(users);
 
+    console.log(data); // => undefined 
+
+
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error :(</p> ;
 
     const handleClick = async(userId) => {
+      //elimina utente
       window.location.reload()
     }
 
@@ -34,7 +38,8 @@ const Users = () =>  {
             <th></th>
         </tr>
         </thead>
-        {data.items.map(user =>
+        {data.body === 'Errore nella richiesta' ? alert('Errore nella richiesta') : ''}
+        {data.body.Items.map(user => 
         <tbody key={user.id}>
         <tr> 
             <td><button onClick={() => viewPost(user.id)}>👁</button></td>
