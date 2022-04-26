@@ -32,7 +32,7 @@ const CreateUser = () => {
         }
     }
 
-    const [createUser, {error}] = useMutation(create,{variables: {'name' : name, 'surname': surname, 'age': parseInt(age), 
+    const [createUser, {data, error}] = useMutation(create,{variables: {'name' : name, 'surname': surname, 'age': parseInt(age), 
     'username': username, 'password': password}})
 
     const handleClick = (event) => {
@@ -42,6 +42,7 @@ const CreateUser = () => {
         }
         createUser();
         console.log('error: ', error)
+        console.log('data: ', data)
         if(!error || error !== undefined) {
             navigate(ROUTES.users);
             window.location.reload();

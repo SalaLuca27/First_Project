@@ -47,6 +47,14 @@ exports.handler = async ({name, surname, age, username, password}, context, call
             callback(err, null);
         } else {
             callback(null, data);
+                return {
+                    statusCode: 200,
+                 headers: {
+                     "Access-Control-Allow-Origin": "*",
+                     "Access-Control-Allow-Headers": "*"
+                 }, 
+                    body: JSON.stringify('SUCCESS'),
+                };
         }
     }).promise();
 };
