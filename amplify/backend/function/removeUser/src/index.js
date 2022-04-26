@@ -8,7 +8,6 @@
 
 const AWS = require('aws-sdk');
 var dbclient = new AWS.DynamoDB.DocumentClient({region: "us-east-1"});
-var utenti = {};
 var success = true;
 
 exports.handler = async({id}, context, callback) => {
@@ -23,8 +22,7 @@ exports.handler = async({id}, context, callback) => {
             //callback(err, null);
         }
         else{
-
-            utenti = data;
+            success = true;
             //callback(null, data);
         }
     }).promise();
