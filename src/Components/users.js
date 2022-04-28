@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Table } from "react-bootstrap";
 import { useMutation, useQuery } from "@apollo/client";
 import { useNavigate } from "react-router-dom";
@@ -11,10 +11,6 @@ const Users = () =>  {
   const navigate = useNavigate();
 
   const {loading, error, data} = useQuery(users);
-
-  useEffect( () => {
-
-  }, []);
 
   const [del, {err}] = useMutation(remove);
 

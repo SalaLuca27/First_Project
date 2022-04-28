@@ -28,7 +28,7 @@ type Query {
   me: User!
 
   posts: [Post!]!
-    @functin(name: "getPosts-{env}")
+    @function(name: "getPosts-{env}")
 
   post(id: ID!) : Post!
     @function(name: "getPost-{env}")
