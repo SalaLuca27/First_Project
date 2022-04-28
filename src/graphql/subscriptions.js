@@ -1,7 +1,9 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const postCreated = /* GraphQL */ `
+import { gql } from "apollo-boost";
+
+export const postCreated = gql `
   subscription PostCreated {
     postCreated {
       id
@@ -25,7 +27,7 @@ export const postCreated = /* GraphQL */ `
     }
   }
 `;
-export const postUpdated = /* GraphQL */ `
+export const postUpdated = gql `
   subscription PostUpdated {
     postUpdated {
       id
@@ -49,7 +51,7 @@ export const postUpdated = /* GraphQL */ `
     }
   }
 `;
-export const postDeleted = /* GraphQL */ `
+export const postDeleted = gql `
   subscription PostDeleted {
     postDeleted {
       id
@@ -73,7 +75,7 @@ export const postDeleted = /* GraphQL */ `
     }
   }
 `;
-export const userCreated = /* GraphQL */ `
+export const userCreated = gql `
   subscription UserCreated {
     userCreated {
       id
@@ -97,7 +99,7 @@ export const userCreated = /* GraphQL */ `
     }
   }
 `;
-export const userUpdated = /* GraphQL */ `
+export const userUpdated = gql `
   subscription UserUpdated {
     userUpdated {
       id
@@ -121,7 +123,7 @@ export const userUpdated = /* GraphQL */ `
     }
   }
 `;
-export const userDeleted = /* GraphQL */ `
+export const userDeleted = gql `
   subscription UserDeleted {
     userDeleted {
       id
@@ -145,7 +147,7 @@ export const userDeleted = /* GraphQL */ `
     }
   }
 `;
-export const onCreateUser = /* GraphQL */ `
+export const onCreateUser = gql `
   subscription OnCreateUser {
     onCreateUser {
       id
@@ -169,7 +171,7 @@ export const onCreateUser = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateUser = /* GraphQL */ `
+export const onUpdateUser = gql `
   subscription OnUpdateUser {
     onUpdateUser {
       id
@@ -193,7 +195,7 @@ export const onUpdateUser = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteUser = /* GraphQL */ `
+export const onDeleteUser = gql `
   subscription OnDeleteUser {
     onDeleteUser {
       id
@@ -217,7 +219,7 @@ export const onDeleteUser = /* GraphQL */ `
     }
   }
 `;
-export const onCreatePost = /* GraphQL */ `
+export const onCreatePost = gql `
   subscription OnCreatePost {
     onCreatePost {
       id
@@ -241,7 +243,7 @@ export const onCreatePost = /* GraphQL */ `
     }
   }
 `;
-export const onUpdatePost = /* GraphQL */ `
+export const onUpdatePost = gql `
   subscription OnUpdatePost {
     onUpdatePost {
       id
@@ -265,7 +267,7 @@ export const onUpdatePost = /* GraphQL */ `
     }
   }
 `;
-export const onDeletePost = /* GraphQL */ `
+export const onDeletePost = gql `
   subscription OnDeletePost {
     onDeletePost {
       id

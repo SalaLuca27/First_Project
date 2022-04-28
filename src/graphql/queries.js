@@ -1,7 +1,9 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const users = /* GraphQL */ `
+import { gql } from "apollo-boost";
+
+export const users = gql `
   query Users {
     users {
       id
@@ -25,7 +27,7 @@ export const users = /* GraphQL */ `
     }
   }
 `;
-export const user = /* GraphQL */ `
+export const user = gql `
   query User($id: ID!) {
     user(id: $id) {
       id
@@ -49,7 +51,7 @@ export const user = /* GraphQL */ `
     }
   }
 `;
-export const me = /* GraphQL */ `
+export const me = gql `
   query Me {
     me {
       id
@@ -73,7 +75,7 @@ export const me = /* GraphQL */ `
     }
   }
 `;
-export const posts = /* GraphQL */ `
+export const posts = gql `
   query Posts {
     posts {
       id
@@ -97,7 +99,7 @@ export const posts = /* GraphQL */ `
     }
   }
 `;
-export const post = /* GraphQL */ `
+export const post = gql `
   query Post($id: ID!) {
     post(id: $id) {
       id
@@ -121,7 +123,7 @@ export const post = /* GraphQL */ `
     }
   }
 `;
-export const getUser = /* GraphQL */ `
+export const getUser = gql `
   query GetUser($id: ID!) {
     getUser(id: $id) {
       id
@@ -145,7 +147,7 @@ export const getUser = /* GraphQL */ `
     }
   }
 `;
-export const listUsers = /* GraphQL */ `
+export const listUsers = gql `
   query ListUsers(
     $filter: ModelUserFilterInput
     $limit: Int
@@ -169,7 +171,7 @@ export const listUsers = /* GraphQL */ `
     }
   }
 `;
-export const getPost = /* GraphQL */ `
+export const getPost = gql `
   query GetPost($id: ID!) {
     getPost(id: $id) {
       id
@@ -193,7 +195,7 @@ export const getPost = /* GraphQL */ `
     }
   }
 `;
-export const listPosts = /* GraphQL */ `
+export const listPosts = gql `
   query ListPosts(
     $filter: ModelPostFilterInput
     $limit: Int
