@@ -23,9 +23,15 @@ type Query {
     @function(name: "getUsers-${env}")
     
   user(id: ID!) : User!
+    @function(name: "getUser-${env}")
+    
   me: User!
+
   posts: [Post!]!
+    @functin(name: "getPosts-{env}")
+
   post(id: ID!) : Post!
+    @function(name: "getPost-{env}")
 }
 
 type Mutation {
@@ -35,10 +41,17 @@ type Mutation {
    @function(name: "createUser-${env}")
   
   remove(id: ID!) : Boolean!
+    @function(name: "removeUser-${env}")
+
   update(id: ID!, username: String!) : User!
+
   newPost(description: String!) : Post!
+    @function(name: "createPost-{env}")
+
   modifyPost(id: ID!, description: String!, userId: ID!) : Post!
+
   removePost(id: ID!) : Boolean!
+    @function(name: "removePost-{env}")
 }
 
 type Subscription {

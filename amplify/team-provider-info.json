@@ -26,7 +26,27 @@
         },
         "removeUser": {
           "deploymentBucketName": "amplify-amplify6a7bb416950c4-staging-103344-deployment",
-          "s3Key": "amplify-builds/removeUser-42752b5652696633424f-build.zip"
+          "s3Key": "amplify-builds/removeUser-72335a4173476c2b7447-build.zip"
+        },
+        "createPost": {
+          "deploymentBucketName": "amplify-amplify6a7bb416950c4-staging-103344-deployment",
+          "s3Key": "amplify-builds/createPost-4472454e5950362f7556-build.zip"
+        },
+        "getUser": {
+          "deploymentBucketName": "amplify-amplify6a7bb416950c4-staging-103344-deployment",
+          "s3Key": "amplify-builds/getUser-476d3041474c74775735-build.zip"
+        },
+        "getPosts": {
+          "deploymentBucketName": "amplify-amplify6a7bb416950c4-staging-103344-deployment",
+          "s3Key": "amplify-builds/getPosts-36324173764f3973446a-build.zip"
+        },
+        "getPost": {
+          "deploymentBucketName": "amplify-amplify6a7bb416950c4-staging-103344-deployment",
+          "s3Key": "amplify-builds/getPost-676875634d7833795656-build.zip"
+        },
+        "removePost": {
+          "deploymentBucketName": "amplify-amplify6a7bb416950c4-staging-103344-deployment",
+          "s3Key": "amplify-builds/removePost-6a7079344658452b3247-build.zip"
         }
       }
     }
