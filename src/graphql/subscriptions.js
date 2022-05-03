@@ -1,9 +1,7 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-import { gql } from "apollo-boost";
-
-export const postCreated = gql `
+export const postCreated = /* GraphQL */ `
   subscription PostCreated {
     postCreated {
       id
@@ -20,14 +18,16 @@ export const postCreated = gql `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
       userPostsId
+      owner
     }
   }
 `;
-export const postUpdated = gql `
+export const postUpdated = /* GraphQL */ `
   subscription PostUpdated {
     postUpdated {
       id
@@ -44,14 +44,16 @@ export const postUpdated = gql `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
       userPostsId
+      owner
     }
   }
 `;
-export const postDeleted = gql `
+export const postDeleted = /* GraphQL */ `
   subscription PostDeleted {
     postDeleted {
       id
@@ -68,14 +70,16 @@ export const postDeleted = gql `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
       userPostsId
+      owner
     }
   }
 `;
-export const userCreated = gql `
+export const userCreated = /* GraphQL */ `
   subscription UserCreated {
     userCreated {
       id
@@ -91,15 +95,17 @@ export const userCreated = gql `
           createdAt
           updatedAt
           userPostsId
+          owner
         }
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
-export const userUpdated = gql `
+export const userUpdated = /* GraphQL */ `
   subscription UserUpdated {
     userUpdated {
       id
@@ -115,15 +121,17 @@ export const userUpdated = gql `
           createdAt
           updatedAt
           userPostsId
+          owner
         }
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
-export const userDeleted = gql `
+export const userDeleted = /* GraphQL */ `
   subscription UserDeleted {
     userDeleted {
       id
@@ -139,15 +147,17 @@ export const userDeleted = gql `
           createdAt
           updatedAt
           userPostsId
+          owner
         }
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
-export const onCreateUser = gql `
+export const onCreateUser = /* GraphQL */ `
   subscription OnCreateUser {
     onCreateUser {
       id
@@ -163,15 +173,17 @@ export const onCreateUser = gql `
           createdAt
           updatedAt
           userPostsId
+          owner
         }
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
-export const onUpdateUser = gql `
+export const onUpdateUser = /* GraphQL */ `
   subscription OnUpdateUser {
     onUpdateUser {
       id
@@ -187,15 +199,17 @@ export const onUpdateUser = gql `
           createdAt
           updatedAt
           userPostsId
+          owner
         }
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
-export const onDeleteUser = gql `
+export const onDeleteUser = /* GraphQL */ `
   subscription OnDeleteUser {
     onDeleteUser {
       id
@@ -211,15 +225,17 @@ export const onDeleteUser = gql `
           createdAt
           updatedAt
           userPostsId
+          owner
         }
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
-export const onCreatePost = gql `
+export const onCreatePost = /* GraphQL */ `
   subscription OnCreatePost {
     onCreatePost {
       id
@@ -236,14 +252,16 @@ export const onCreatePost = gql `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
       userPostsId
+      owner
     }
   }
 `;
-export const onUpdatePost = gql `
+export const onUpdatePost = /* GraphQL */ `
   subscription OnUpdatePost {
     onUpdatePost {
       id
@@ -260,14 +278,16 @@ export const onUpdatePost = gql `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
       userPostsId
+      owner
     }
   }
 `;
-export const onDeletePost = gql `
+export const onDeletePost = /* GraphQL */ `
   subscription OnDeletePost {
     onDeletePost {
       id
@@ -284,10 +304,12 @@ export const onDeletePost = gql `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
       userPostsId
+      owner
     }
   }
 `;

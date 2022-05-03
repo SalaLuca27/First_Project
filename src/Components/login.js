@@ -26,6 +26,7 @@ const LoginUser = () => {
             event.preventDefault();
             await Auth.signIn(username.trim(), password.trim())
                 .then((data) => {
+                    localStorage.setItem('sidebarUsername', data.username);
                     setToken(data.signInUserSession.accessToken.jwtToken);
                 })
                 .catch((error) => {

@@ -8,11 +8,12 @@
 
 //lambda per la mutation createUser ==> create
 const AWS = require('aws-sdk');
-const dynamo = new AWS.DynamoDB.DocumentClient({region: "us-east-1"});
+const dynamo = new AWS.DynamoDB.DocumentClient({ region: "us-east-1" });
 var success = true;
 
-exports.handler = async ({name, surname, age, username, password}, context, callback) => {
+exports.handler = async ({ name, surname, age, username, password }, context, callback) => {
     console.log("Processing...");
+    const date = new Date().toISOString().split('T')[0];
     const params = {
         Item: {
             id: Date.now().toString(),
@@ -20,13 +21,15 @@ exports.handler = async ({name, surname, age, username, password}, context, call
             surname: surname,
             age: age,
             username: username,
-            password: password
+            password: password,
+            createdAt: date,
+            updatedAt: date
         },
-        TableName: "User-zxzpbzksgzhmlfyzozcol6p5ge-staging"
+        TableName: process.env.API_REACT_USERTABLE_NAME
     };
-    
-    await dynamo.put(params, function(err, data) {
-        if(err){
+
+    await dynamo.put(params, function (err, data) {
+        if (err) {
             //callback(err, null);
             success = false;
         } else {
@@ -34,24 +37,16 @@ exports.handler = async ({name, surname, age, username, password}, context, call
             success = true;
         }
     }).promise();
-    
-    if(success){
+
+    if (success) {
         return {
             statusCode: 200,
-            headers: {
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Headers": "*"
-            }, 
             body: 'SUCCESS',
         };
     }
-    else{
+    else {
         return {
             statusCode: 400,
-            headers: {
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Headers": "*"
-            }, 
             body: 'ERROR',
         };
     }

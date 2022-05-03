@@ -24,6 +24,7 @@ const Sidebar = () => {
         localStorage.setItem('userPostId', '');
         localStorage.setItem('token', '');
         localStorage.setItem('postId', '');
+        localStorage.setItem('sidebarUsername', '');
         Auth.signOut();
         navigate(ROUTES.login);
     }
@@ -36,7 +37,7 @@ const Sidebar = () => {
                 <div className="orderLinksDIV">
                     <ul className="sidebarUL" style={{display: sidebarIsOpen ? "" : "none"}}>
                         <li></li>
-                        <li></li>
+                        <li className='sidebarUsername'>Ciao, {localStorage.getItem('sidebarUsername')}</li>
                         <li className='sidebarLI'>
                             <Link className='sidebarLink' to={ROUTES.home} onClick={handleClick} name = ''>HOME</Link>
                         </li>

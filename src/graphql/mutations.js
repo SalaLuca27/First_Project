@@ -1,13 +1,12 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
-import { gql } from "apollo-boost";
 
-export const login = gql `
+export const login = /* GraphQL */ `
   mutation Login($username: String!, $password: String!) {
     login(username: $username, password: $password)
   }
 `;
-export const create = gql `
+export const create = /* GraphQL */ `
   mutation Create(
     $name: String!
     $surname: String!
@@ -35,20 +34,22 @@ export const create = gql `
           createdAt
           updatedAt
           userPostsId
+          owner
         }
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
-export const remove = gql `
+export const remove = /* GraphQL */ `
   mutation Remove($id: ID!) {
     remove(id: $id)
   }
 `;
-export const update = gql `
+export const update = /* GraphQL */ `
   mutation Update($id: ID!, $username: String!) {
     update(id: $id, username: $username) {
       id
@@ -64,15 +65,17 @@ export const update = gql `
           createdAt
           updatedAt
           userPostsId
+          owner
         }
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
-export const newPost = gql `
+export const newPost = /* GraphQL */ `
   mutation NewPost($description: String!) {
     newPost(description: $description) {
       id
@@ -89,14 +92,16 @@ export const newPost = gql `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
       userPostsId
+      owner
     }
   }
 `;
-export const modifyPost = gql `
+export const modifyPost = /* GraphQL */ `
   mutation ModifyPost($id: ID!, $description: String!, $userId: ID!) {
     modifyPost(id: $id, description: $description, userId: $userId) {
       id
@@ -113,19 +118,21 @@ export const modifyPost = gql `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
       userPostsId
+      owner
     }
   }
 `;
-export const removePost = gql `
+export const removePost = /* GraphQL */ `
   mutation RemovePost($id: ID!) {
     removePost(id: $id)
   }
 `;
-export const createUser = gql `
+export const createUser = /* GraphQL */ `
   mutation CreateUser(
     $input: CreateUserInput!
     $condition: ModelUserConditionInput
@@ -144,15 +151,17 @@ export const createUser = gql `
           createdAt
           updatedAt
           userPostsId
+          owner
         }
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
-export const updateUser = gql `
+export const updateUser = /* GraphQL */ `
   mutation UpdateUser(
     $input: UpdateUserInput!
     $condition: ModelUserConditionInput
@@ -171,15 +180,17 @@ export const updateUser = gql `
           createdAt
           updatedAt
           userPostsId
+          owner
         }
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
-export const deleteUser = gql `
+export const deleteUser = /* GraphQL */ `
   mutation DeleteUser(
     $input: DeleteUserInput!
     $condition: ModelUserConditionInput
@@ -198,15 +209,17 @@ export const deleteUser = gql `
           createdAt
           updatedAt
           userPostsId
+          owner
         }
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
-export const createPost = gql `
+export const createPost = /* GraphQL */ `
   mutation CreatePost(
     $input: CreatePostInput!
     $condition: ModelPostConditionInput
@@ -226,14 +239,16 @@ export const createPost = gql `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
       userPostsId
+      owner
     }
   }
 `;
-export const updatePost = gql `
+export const updatePost = /* GraphQL */ `
   mutation UpdatePost(
     $input: UpdatePostInput!
     $condition: ModelPostConditionInput
@@ -253,14 +268,16 @@ export const updatePost = gql `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
       userPostsId
+      owner
     }
   }
 `;
-export const deletePost = gql `
+export const deletePost = /* GraphQL */ `
   mutation DeletePost(
     $input: DeletePostInput!
     $condition: ModelPostConditionInput
@@ -280,10 +297,12 @@ export const deletePost = gql `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
       userPostsId
+      owner
     }
   }
 `;
