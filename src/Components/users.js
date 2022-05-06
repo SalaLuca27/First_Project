@@ -46,7 +46,7 @@ const Users = () =>  {
       .catch((err) => {
         setError(err);
         setLoading(false);
-        console.log('Error: ', error);
+        console.log('Error: ', err);
       })
   }, []);
 

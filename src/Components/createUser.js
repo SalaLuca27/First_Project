@@ -1,8 +1,9 @@
 import { ROUTES } from "../Utils/routes";
 import { useState } from "react";
-import { useMutation } from "@apollo/client";
 import { useNavigate } from "react-router-dom";
 import { create } from "../graphql/mutations";
+import { gql } from 'graphql-tag';
+import { API } from "aws-amplify";
 
 const CreateUser = () => {
 
@@ -12,7 +13,6 @@ const CreateUser = () => {
     const [age, setAge] = useState();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [errore, setErrore] = useState(false);
 
     const handleChange = (event) => {
         if(event.target.name === 'name'){
@@ -32,28 +32,35 @@ const CreateUser = () => {
         }
     }
 
-    const [createUser, {data, error}] = useMutation(create,{variables: {'name' : name, 'surname': surname, 'age': parseInt(age), 
-    'username': username, 'password': password}})
+    console.log(parseInt(age));
+
+    async function createUser() {
+        
+        const apiData = await API.graphql({ query: gql(create), variables: {'name' : name, 'surname': surname, 'age': parseInt(age), 
+        'username': username, 'password': password}})
+        return apiData;
+      }
+
 
     const handleClick = (event) => {
         event.preventDefault();
         if(name.trim() === "" || surname.trim() === "" || age.trim() === "" || username.trim() === "" || password.trim() === ""){
-            throw setErrore(true);
+            throw window.alert('Compilare tutti i campi');
         }
-        createUser();
-        console.log('error: ', error)
-        console.log('data: ', data)
-        if(!error || error !== undefined) {
-            navigate(ROUTES.users);
-            window.location.reload();
-        }
+        createUser()
+            .catch((error) => {
+                console.log('error: ', error);
+            })
+            .then((data) => { 
+                console.log('data: ', data);
+                // navigate(ROUTES.users);
+            })
     }
 
     return (
 
         <div className="form">
             <form>
-            {errore ? <h4>Compilare tutti i campi realtivi all'utente</h4> : ""}
                 <div className="mb-3">
                     <label className="form-label">Name</label>
                     <input type="text" className="form-control" placeholder="name" name="name" onChange={handleChange}/>

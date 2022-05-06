@@ -2,10 +2,11 @@ import { BrowserRouter, Route, Navigate, Outlet, Routes } from "react-router-dom
 import {UsersPage, UserPage, PostsPage, PostPage, LoginPage, HomePage, RegisterPage, SubUserPage, ProfilePage, CreatePostPage, CreateUserPage, UpdatePostPage, UpdateUserPage, ForgotPasswordPage} from '../Pages';
 import {ROUTES} from '../Utils/routes';
 import Sidebar from "../Components/Sidebar";
+import { Auth } from "aws-amplify";
 
 const RequireAuth = () => {
     const access = localStorage.getItem("token");
-    if(access !== "") {
+    if(access !== Auth.currentSession().toString()) {
         return <Outlet />
     }
     return <Navigate to = {ROUTES.login} />
