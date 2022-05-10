@@ -56,22 +56,20 @@ const Users = () =>  {
   }
 
   const navigate = useNavigate();
-
-  
-  console.log('data: ', data);
-  console.log('error: ', error);
-  console.log('loading: ', loading );
   
   if (loading) return <p>Loading USERS...</p>;
   if (error) return <p>Error :(</p> ;
   
-  async function deleteUser() {
-    const apiData = await API.graphql({query: gql(remove)});
-    return apiData;
+  async function deleteUser(userId) {
+    const delData = await API.graphql({ query: gql(remove), variables: {"id" : userId}});
+    return delData;
   }
 
   const del = async(userId) => {
-    deleteUser({variables: {"id" : userId}}).catch(error => setErr(error));
+    deleteUser(userId)
+      .catch((error) => {
+        setErr(error);
+        })
     window.location.reload()
   }
 
@@ -87,7 +85,8 @@ const Users = () =>  {
       <thead>
       <tr>
           <th></th>
-          <th>ID</th>
+          <th>NAME</th>
+          <th>SURNAME</th>
           <th>USERNAME</th>
           <th></th>
       </tr>
@@ -96,7 +95,8 @@ const Users = () =>  {
       <tbody key={user.id}>
       <tr> 
           <td><button onClick={() => viewPost(user.id)}>👁</button></td>
-          <td>{user.id}</td>
+          <td>{user.name}</td>
+          <td>{user.surname}</td>
           <td>{user.username}</td>
           <td><button onClick={() => del(user.id)}>🗑</button></td>
       </tr>

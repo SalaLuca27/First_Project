@@ -6,7 +6,7 @@ import { Auth } from "aws-amplify";
 
 const RequireAuth = () => {
     const access = localStorage.getItem("token");
-    if(access !== Auth.currentSession().toString()) {
+    if(access !== '') {
         return <Outlet />
     }
     return <Navigate to = {ROUTES.login} />

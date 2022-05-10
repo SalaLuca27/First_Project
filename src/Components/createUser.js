@@ -32,8 +32,6 @@ const CreateUser = () => {
         }
     }
 
-    console.log(parseInt(age));
-
     async function createUser() {
         
         const apiData = await API.graphql({ query: gql(create), variables: {'name' : name, 'surname': surname, 'age': parseInt(age), 
@@ -53,7 +51,7 @@ const CreateUser = () => {
             })
             .then((data) => { 
                 console.log('data: ', data);
-                // navigate(ROUTES.users);
+                navigate(ROUTES.users);
             })
     }
 

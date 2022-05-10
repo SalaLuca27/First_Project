@@ -7,6 +7,8 @@ import { Auth } from 'aws-amplify';
 const Sidebar = () => {
     const navigate = useNavigate();
     const [sidebarIsOpen, setSidebarIsOpen] = useState(true);
+    const [username, setUsername] = useState("");
+    Auth.currentSession().then(data => setUsername(data.getAccessToken().payload.username));
     const handleSidebar = () => {
         setSidebarIsOpen(!sidebarIsOpen);
     }
@@ -37,7 +39,7 @@ const Sidebar = () => {
                 <div className="orderLinksDIV">
                     <ul className="sidebarUL" style={{display: sidebarIsOpen ? "" : "none"}}>
                         <li></li>
-                        <li className='sidebarUsername'>Ciao, {localStorage.getItem('sidebarUsername')}</li>
+                        <li className='sidebarUsername'>Ciao, {username}</li>
                         <li className='sidebarLI'>
                             <Link className='sidebarLink' to={ROUTES.home} onClick={handleClick} name = ''>HOME</Link>
                         </li>

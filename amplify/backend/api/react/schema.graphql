@@ -26,7 +26,7 @@ type Query {
   users: [User!]!
     @function(name: "getUsers-${env}")
     
-  user(id: ID!) : User!
+  user(id: String!) : User!
     @function(name: "getUser-${env}")
     
   me: User!
@@ -34,7 +34,7 @@ type Query {
   posts: [Post!]!
     @function(name: "getPosts-${env}")
 
-  post(id: ID!) : Post!
+  post(id: String!) : Post!
     @function(name: "getPost-${env}")
 }
 
@@ -44,17 +44,17 @@ type Mutation {
   create(name: String!, surname: String!, age: Int!, username: String!, password: String!): User!
    @function(name: "createUser-${env}")
   
-  remove(id: ID!) : Boolean!
+  remove(id: String!) : Boolean!
     @function(name: "removeUser-${env}")
 
-  update(id: ID!, username: String!) : User!
+  update(id: String!, username: String!) : User!
 
   newPost(description: String!) : Post!
     @function(name: "createPost-${env}")
 
-  modifyPost(id: ID!, description: String!, userId: ID!) : Post!
+  modifyPost(id: String!, description: String!, userId: String!) : Post!
 
-  removePost(id: ID!) : Boolean!
+  removePost(id: String!) : Boolean!
     @function(name: "removePost-${env}")
 }
 

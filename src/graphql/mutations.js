@@ -45,12 +45,12 @@ export const create = /* GraphQL */ `
   }
 `;
 export const remove = /* GraphQL */ `
-  mutation Remove($id: ID!) {
+  mutation Remove($id: String!) {
     remove(id: $id)
   }
 `;
 export const update = /* GraphQL */ `
-  mutation Update($id: ID!, $username: String!) {
+  mutation Update($id: String!, $username: String!) {
     update(id: $id, username: $username) {
       id
       name
@@ -102,7 +102,7 @@ export const newPost = /* GraphQL */ `
   }
 `;
 export const modifyPost = /* GraphQL */ `
-  mutation ModifyPost($id: ID!, $description: String!, $userId: ID!) {
+  mutation ModifyPost($id: String!, $description: String!, $userId: String!) {
     modifyPost(id: $id, description: $description, userId: $userId) {
       id
       description
@@ -128,7 +128,7 @@ export const modifyPost = /* GraphQL */ `
   }
 `;
 export const removePost = /* GraphQL */ `
-  mutation RemovePost($id: ID!) {
+  mutation RemovePost($id: String!) {
     removePost(id: $id)
   }
 `;

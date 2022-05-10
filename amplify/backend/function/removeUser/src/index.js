@@ -10,10 +10,10 @@ const AWS = require('aws-sdk');
 var dbclient = new AWS.DynamoDB.DocumentClient({region: "us-east-1"});
 var success = true;
 
-exports.handler = async({id}, context, callback) => {
+exports.handler = async(event, context, callback) => {
     let params = {
-        Key : {id : id},
-        TableName: "User-zxzpbzksgzhmlfyzozcol6p5ge-staging"
+        Key : {'id' : event.arguments.id},
+        TableName: process.env.API_REACT_USERTABLE_NAME
     };
 
     await dbclient.delete(params, (err, data) => {

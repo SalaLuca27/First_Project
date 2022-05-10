@@ -28,7 +28,7 @@ export const users = /* GraphQL */ `
   }
 `;
 export const user = /* GraphQL */ `
-  query User($id: ID!) {
+  query User($id: String!) {
     user(id: $id) {
       id
       name
@@ -106,7 +106,7 @@ export const posts = /* GraphQL */ `
   }
 `;
 export const post = /* GraphQL */ `
-  query Post($id: ID!) {
+  query Post($id: String!) {
     post(id: $id) {
       id
       description
