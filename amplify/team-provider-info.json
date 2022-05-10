@@ -34,7 +34,7 @@
         },
         "getUser": {
           "deploymentBucketName": "amplify-amplify6a7bb416950c4-staging-103344-deployment",
-          "s3Key": "amplify-builds/getUser-70484b387a6562353553-build.zip"
+          "s3Key": "amplify-builds/getUser-74702f66547154356d65-build.zip"
         },
         "getPosts": {
           "deploymentBucketName": "amplify-amplify6a7bb416950c4-staging-103344-deployment",

@@ -12,27 +12,33 @@ Amplify Params - DO NOT EDIT */
 
 const AWS = require('aws-sdk');
 var dbclient = new AWS.DynamoDB.DocumentClient({region: "us-east-1"});
-var success = true;
- 
+
 exports.handler = async(event, context, callback) => {
+    var success = true;
+    const id = event.arguments.id;
     let params = {
-        Key: {'id': event.arguments.id},
+        Key: event.arguments.id,
         TableName: process.env.API_REACT_USERTABLE_NAME
     };
  
-    const ret =  await dbclient.query(params, variables).promise();
+    const utente = await dbclient.get({
+        TableName: process.env.API_REACT_USERTABLE_NAME,
+        Key: {
+            id
+        }
+      }, (err, data) => {
+          if(data.Item === undefined){
+              success = false;
+          }
+          else{
+              success = true;
+          }
+      }).promise();
  
      if(success) {
-        return ret;
+        return utente.Item;
      }
      else{
-         return {
-            statusCode : 400,
-            headers: {
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Headers": "*"
-            }, 
-            body : 'Errore nella richiesta'
-        }
+        return 'No user with this ID';
     }
 }

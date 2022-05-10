@@ -1,33 +1,45 @@
-import React from "react";
-import { gql, useQuery } from "@apollo/client";
+import React, { useEffect, useState } from "react";
+import { gql } from "@apollo/client";
 import { Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../Utils/routes";
-
-const USER = gql `
-query GetUserById($id: Int!) {
-  user(id: $id) {
-    id
-    name
-    surname
-    age
-    username
-    password
-  }
-}`;
+import { user } from "../graphql/queries";
+import { API } from "aws-amplify";
 
 export default function User() {
   
+  const id = localStorage.getItem('userId');
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState();
+  const [data, setData] = useState([]);
+  const [err, setErr] = useState();
 
-  const id = parseInt(localStorage.getItem('userId'));
-  const {loading, error, data} = useQuery(USER, {variables: {"id": id}})
+  async function fetchUser(id) {
+    const apiData = await API.graphql({ query: gql(user), variables: { "id":  id}});
+    console.log(apiData);
+    return apiData;
+  }
+  
+  useEffect(() => {
+      fetchUser(id)
+        .then((item) => {
+          setData(item);
+          setLoading(false);
+          console.log('data: ', data);
+        })
+        .catch((err) => {
+          setError(err);
+          setLoading(false);
+          console.log('Error: ', err);
+        })
+  }, []);
 
   if(loading) return <p>Loading...</p>;
-  if(error) return <p>Error...</p>;
+  if(error) return <p>Error :(</p>;
 
   const update = () => {
-    localStorage.setItem('username', data.user.username);
+    localStorage.setItem('username', data.Item.username);
     navigate(ROUTES.updateUser)
   }
 
@@ -44,14 +56,14 @@ export default function User() {
           <th>AGE</th>
       </tr>
       </thead>      
-      <tbody key={data.user.id}>
+      <tbody key={data.data.user.id}>
       <tr> 
           <td><button onClick={() => update()}>✏️</button></td>
-          <td>{data.user.id}</td>
-          <td>{data.user.name}</td>
-          <td>{data.user.surname}</td>
-          <td>{data.user.username}</td>
-          <td>{data.user.age}</td>
+          <td>{data.data.user.id}</td>
+          <td>{data.data.user.name}</td>
+          <td>{data.data.user.surname}</td>
+          <td>{data.data.user.username}</td>
+          <td>{data.data.user.age}</td>
       </tr>
       </tbody>
     </Table>
