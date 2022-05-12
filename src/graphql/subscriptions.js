@@ -22,8 +22,8 @@ export const postCreated = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      userPostsId
       owner
+      userPostsId
     }
   }
 `;
@@ -48,8 +48,8 @@ export const postUpdated = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      userPostsId
       owner
+      userPostsId
     }
   }
 `;
@@ -74,8 +74,8 @@ export const postDeleted = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      userPostsId
       owner
+      userPostsId
     }
   }
 `;
@@ -94,8 +94,8 @@ export const userCreated = /* GraphQL */ `
           description
           createdAt
           updatedAt
-          userPostsId
           owner
+          userPostsId
         }
         nextToken
       }
@@ -120,8 +120,8 @@ export const userUpdated = /* GraphQL */ `
           description
           createdAt
           updatedAt
-          userPostsId
           owner
+          userPostsId
         }
         nextToken
       }
@@ -146,8 +146,8 @@ export const userDeleted = /* GraphQL */ `
           description
           createdAt
           updatedAt
-          userPostsId
           owner
+          userPostsId
         }
         nextToken
       }
@@ -172,8 +172,8 @@ export const onCreateUser = /* GraphQL */ `
           description
           createdAt
           updatedAt
-          userPostsId
           owner
+          userPostsId
         }
         nextToken
       }
@@ -198,8 +198,8 @@ export const onUpdateUser = /* GraphQL */ `
           description
           createdAt
           updatedAt
-          userPostsId
           owner
+          userPostsId
         }
         nextToken
       }
@@ -224,8 +224,8 @@ export const onDeleteUser = /* GraphQL */ `
           description
           createdAt
           updatedAt
-          userPostsId
           owner
+          userPostsId
         }
         nextToken
       }
@@ -256,8 +256,8 @@ export const onCreatePost = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      userPostsId
       owner
+      userPostsId
     }
   }
 `;
@@ -282,8 +282,8 @@ export const onUpdatePost = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      userPostsId
       owner
+      userPostsId
     }
   }
 `;
@@ -308,8 +308,8 @@ export const onDeletePost = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      userPostsId
       owner
+      userPostsId
     }
   }
 `;

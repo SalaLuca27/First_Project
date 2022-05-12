@@ -15,26 +15,7 @@ const Users = () =>  {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
   const [data, setData] = useState([]);
-  const [err, setErr] = useState();
-  
-  // async function FetchUsers() {
-  //   const {loading, error, data} = useQuery(gql(users));
-  //   setLoading(loading);
-  //   setError(error);
-  //   setData(data);
-  // }
-  
-  // useEffect(() => {
-  //   FetchUsers()
-  //     .then((item) => {
-  //       setData(item);
-  //       // console.log(data);
-  //     })
-  //     .catch((e) => {
-  //       setError(e);
-  //       // console.log(error);
-  //     })
-  // }, [])
+  const [err, setErr] = useState(false);
 
   useEffect(() => {
     fetchUsers()
@@ -66,11 +47,16 @@ const Users = () =>  {
   }
 
   const del = async(userId) => {
-    deleteUser(userId)
+    await deleteUser(userId)
       .catch((error) => {
-        setErr(error);
+        if(error.data != null){
+          setErr(true);
+        }
+        else{
+          setErr(false);
+        }
         })
-    window.location.reload()
+        window.location.reload();
   }
 
   const viewPost = (userId) => {
@@ -80,7 +66,7 @@ const Users = () =>  {
 
   return (
     <div><h4>TUTTI GLI UTENTI</h4>
-    {err ? alert('Errore nella cancellazione') : ''}
+    {err ? alert('errore nella cancellazione') : ''}
     <Table striped bordered hover variant="dark">
       <thead>
       <tr>

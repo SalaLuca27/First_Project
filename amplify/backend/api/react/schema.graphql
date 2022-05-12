@@ -2,7 +2,7 @@
 # all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
 input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
 
-type User @model @auth(rules: [{ allow: owner, operations: [create, read, delete, update] }]){
+type User @model @auth(rules: [{ allow: owner, operations: [read, delete, update] }]){
   id: String!
   name: String!
   surname: String!
@@ -12,6 +12,7 @@ type User @model @auth(rules: [{ allow: owner, operations: [create, read, delete
   posts: [Post] @hasMany
   createdAt: AWSDateTime!
   updatedAt: AWSDateTime!
+  owner: String
 }
 
 type Post @model @auth(rules: [{ allow: owner, operations: [create, read, delete, update] }]){
@@ -20,6 +21,7 @@ type Post @model @auth(rules: [{ allow: owner, operations: [create, read, delete
   userId: User @belongsTo
   createdAt: AWSDateTime!
   updatedAt: AWSDateTime!
+  owner: String
 }
 
 type Query {
@@ -47,7 +49,8 @@ type Mutation {
   remove(id: String!) : Boolean!
     @function(name: "removeUser-${env}")
 
-  update(id: String!, username: String!) : User!
+  update(id: String!, username: String!) : Boolean!
+    @function(name: "updateUser-${env}")
 
   newPost(description: String!) : Post!
     @function(name: "createPost-${env}")

@@ -33,8 +33,8 @@ export const create = /* GraphQL */ `
           description
           createdAt
           updatedAt
-          userPostsId
           owner
+          userPostsId
         }
         nextToken
       }
@@ -51,28 +51,7 @@ export const remove = /* GraphQL */ `
 `;
 export const update = /* GraphQL */ `
   mutation Update($id: String!, $username: String!) {
-    update(id: $id, username: $username) {
-      id
-      name
-      surname
-      age
-      username
-      password
-      posts {
-        items {
-          id
-          description
-          createdAt
-          updatedAt
-          userPostsId
-          owner
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-      owner
-    }
+    update(id: $id, username: $username)
   }
 `;
 export const newPost = /* GraphQL */ `
@@ -96,8 +75,8 @@ export const newPost = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      userPostsId
       owner
+      userPostsId
     }
   }
 `;
@@ -122,8 +101,8 @@ export const modifyPost = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      userPostsId
       owner
+      userPostsId
     }
   }
 `;
@@ -150,8 +129,8 @@ export const createUser = /* GraphQL */ `
           description
           createdAt
           updatedAt
-          userPostsId
           owner
+          userPostsId
         }
         nextToken
       }
@@ -179,8 +158,8 @@ export const updateUser = /* GraphQL */ `
           description
           createdAt
           updatedAt
-          userPostsId
           owner
+          userPostsId
         }
         nextToken
       }
@@ -208,8 +187,8 @@ export const deleteUser = /* GraphQL */ `
           description
           createdAt
           updatedAt
-          userPostsId
           owner
+          userPostsId
         }
         nextToken
       }
@@ -243,8 +222,8 @@ export const createPost = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      userPostsId
       owner
+      userPostsId
     }
   }
 `;
@@ -272,8 +251,8 @@ export const updatePost = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      userPostsId
       owner
+      userPostsId
     }
   }
 `;
@@ -301,8 +280,8 @@ export const deletePost = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      userPostsId
       owner
+      userPostsId
     }
   }
 `;

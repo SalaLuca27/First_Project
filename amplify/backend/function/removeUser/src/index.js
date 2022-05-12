@@ -19,33 +19,17 @@ exports.handler = async(event, context, callback) => {
     await dbclient.delete(params, (err, data) => {
         if(err){
             success = false;
-            //callback(err, null);
         }
         else{
             success = true;
-            //callback(null, data);
         }
     }).promise();
 
     if(success) {
-        return {
-            statusCode : 200,
-            headers: {
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Headers": "*"
-            },
-            body : 'Utente eliminato'
-        }
+        return 'Utente eliminato'
     }
     else{
-        return {
-            statusCode : 400,
-            headers: {
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Headers": "*"
-            }, 
-            body : 'Errore nella richiesta'
-        }
+        return 'Errore nella richiesta'
     }
     
 }

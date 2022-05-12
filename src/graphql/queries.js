@@ -16,8 +16,8 @@ export const users = /* GraphQL */ `
           description
           createdAt
           updatedAt
-          userPostsId
           owner
+          userPostsId
         }
         nextToken
       }
@@ -42,8 +42,8 @@ export const user = /* GraphQL */ `
           description
           createdAt
           updatedAt
-          userPostsId
           owner
+          userPostsId
         }
         nextToken
       }
@@ -68,8 +68,8 @@ export const me = /* GraphQL */ `
           description
           createdAt
           updatedAt
-          userPostsId
           owner
+          userPostsId
         }
         nextToken
       }
@@ -100,8 +100,8 @@ export const posts = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      userPostsId
       owner
+      userPostsId
     }
   }
 `;
@@ -126,8 +126,8 @@ export const post = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      userPostsId
       owner
+      userPostsId
     }
   }
 `;
@@ -146,8 +146,8 @@ export const getUser = /* GraphQL */ `
           description
           createdAt
           updatedAt
-          userPostsId
           owner
+          userPostsId
         }
         nextToken
       }
@@ -203,8 +203,8 @@ export const getPost = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      userPostsId
       owner
+      userPostsId
     }
   }
 `;
@@ -231,8 +231,8 @@ export const listPosts = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        userPostsId
         owner
+        userPostsId
       }
       nextToken
     }

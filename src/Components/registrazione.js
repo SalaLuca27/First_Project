@@ -2,8 +2,10 @@ import { ROUTES } from "../Utils/routes";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import { Auth } from "aws-amplify";
+import { gql } from 'graphql-tag';
+import { API } from "aws-amplify";
+import { create } from "../graphql/mutations";
 
 const Registrazione = () => {
 
@@ -12,6 +14,9 @@ const Registrazione = () => {
     const [verifyPassword, setVerifyPassword] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [name, setName] = useState("");
+    const [surname, setSurname] = useState("");
+    const [age, setAge] = useState();
     const [openForm, setOpenForm] = useState(true);
     const [code, setCode] = useState("");
 
@@ -27,6 +32,15 @@ const Registrazione = () => {
         }
         else if(event.target.name === 'email'){
             setEmail(event.target.value);
+        }
+        else if(event.target.name === 'name'){
+            setName(event.target.value);
+        }
+        else if(event.target.name === 'surname'){
+            setSurname(event.target.value);
+        }
+        else if(event.target.name === 'age'){
+            setAge(parseInt(event.target.value));
         }
         else{
             setPassword(event.target.value);
@@ -65,6 +79,12 @@ const Registrazione = () => {
         }
     }
 
+    async function createUser() {
+        const apiData = await API.graphql({ query: gql(create), variables: {'name' : name, 'surname': surname, 'age': parseInt(age), 
+        'username': username, 'password': password}})
+        return apiData;
+      }
+
     const confirm = async() => {
         if(code.length !== 6 || code === ''){
             alert('OTP code must have 6 characters');
@@ -74,7 +94,17 @@ const Registrazione = () => {
         await Auth.confirmSignUp(username.trim(), code.trim())
             .then((data)=>{
                 console.log('dataConfirm:', data);
-                navigate(ROUTES.login);
+                if(data === 'SUCCESS')
+                {
+                    createUser()
+                        .catch((err) => {
+                            console.log('Errore creazione DYNAMO: ', err);
+                        })
+                        .then((res) => { 
+                            console.log('Data DYNAMO: ', res);
+                            navigate(ROUTES.login);
+                        })
+                }
             })
             .catch((error)=>{
                 console.log('errorConfirm:', error);
@@ -90,18 +120,18 @@ const Registrazione = () => {
 
                 <form>
                     <div className="mb-3">
+                        <label className="form-label">Name</label>
+                        <input type="text" className="form-control" placeholder="name" name="name" onChange={handleChange} required/>
+                        <label className="form-label">Surname</label>
+                        <input type="text" className="form-control" placeholder="surname" name="surname" onChange={handleChange} required/>
+                        <label className="form-label">Age</label>
+                        <input type="number" className="form-control" placeholder="age" name="age" onChange={handleChange} required/>
                         <label className="form-label">Username</label>
                         <input type="text" className="form-control" placeholder="username" name="username" onChange={handleChange} required/>
-                    </div>
-                    <div className="mb-3">
                         <label className="form-label">Password</label>
                         <input type="password" className="form-control" id="password" placeholder="password" minLength={8} name="password" onChange={handleChange} required/>
-                    </div>
-                    <div className="mb-3">
                         <label className="form-label">Confirm Password</label>
                         <input type="password" className="form-control" id="verifyPassword" placeholder="password" minLength={8} name="verifyPassword" onChange={handleChange} required/>
-                    </div>
-                    <div className="mb-3">
                         <label className="form-label">Email</label>
                         <input type="email" className="form-control" placeholder="email@email.com" name="email" onChange={handleChange} required/>
                     </div>

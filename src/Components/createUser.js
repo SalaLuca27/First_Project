@@ -33,7 +33,6 @@ const CreateUser = () => {
     }
 
     async function createUser() {
-        
         const apiData = await API.graphql({ query: gql(create), variables: {'name' : name, 'surname': surname, 'age': parseInt(age), 
         'username': username, 'password': password}})
         return apiData;

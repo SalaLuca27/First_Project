@@ -26,7 +26,7 @@
         },
         "removeUser": {
           "deploymentBucketName": "amplify-amplify6a7bb416950c4-staging-103344-deployment",
-          "s3Key": "amplify-builds/removeUser-5772347a47574359624f-build.zip"
+          "s3Key": "amplify-builds/removeUser-75704c6d563776594674-build.zip"
         },
         "createPost": {
           "deploymentBucketName": "amplify-amplify6a7bb416950c4-staging-103344-deployment",
@@ -34,7 +34,7 @@
         },
         "getUser": {
           "deploymentBucketName": "amplify-amplify6a7bb416950c4-staging-103344-deployment",
-          "s3Key": "amplify-builds/getUser-74702f66547154356d65-build.zip"
+          "s3Key": "amplify-builds/getUser-3170334c436d6945712f-build.zip"
         },
         "getPosts": {
           "deploymentBucketName": "amplify-amplify6a7bb416950c4-staging-103344-deployment",
@@ -47,6 +47,10 @@
         "removePost": {
           "deploymentBucketName": "amplify-amplify6a7bb416950c4-staging-103344-deployment",
           "s3Key": "amplify-builds/removePost-6a7079344658452b3247-build.zip"
+        },
+        "updateUser": {
+          "deploymentBucketName": "amplify-amplify6a7bb416950c4-staging-103344-deployment",
+          "s3Key": "amplify-builds/updateUser-76446c4359434b494a56-build.zip"
         }
       }
     }

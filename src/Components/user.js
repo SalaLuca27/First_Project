@@ -39,7 +39,7 @@ export default function User() {
   if(error) return <p>Error :(</p>;
 
   const update = () => {
-    localStorage.setItem('username', data.Item.username);
+    localStorage.setItem('username', data.data.user.username);
     navigate(ROUTES.updateUser)
   }
 
