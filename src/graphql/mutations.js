@@ -35,6 +35,7 @@ export const create = /* GraphQL */ `
           updatedAt
           owner
           userPostsId
+          author
         }
         nextToken
       }
@@ -45,12 +46,12 @@ export const create = /* GraphQL */ `
   }
 `;
 export const remove = /* GraphQL */ `
-  mutation Remove($id: String!) {
+  mutation Remove($id: ID!) {
     remove(id: $id)
   }
 `;
 export const update = /* GraphQL */ `
-  mutation Update($id: String!, $username: String!) {
+  mutation Update($id: ID!, $username: String!) {
     update(id: $id, username: $username)
   }
 `;
@@ -77,11 +78,12 @@ export const newPost = /* GraphQL */ `
       updatedAt
       owner
       userPostsId
+      author
     }
   }
 `;
 export const modifyPost = /* GraphQL */ `
-  mutation ModifyPost($id: String!, $description: String!, $userId: String!) {
+  mutation ModifyPost($id: ID!, $description: String!, $userId: ID!) {
     modifyPost(id: $id, description: $description, userId: $userId) {
       id
       description
@@ -103,11 +105,12 @@ export const modifyPost = /* GraphQL */ `
       updatedAt
       owner
       userPostsId
+      author
     }
   }
 `;
 export const removePost = /* GraphQL */ `
-  mutation RemovePost($id: String!) {
+  mutation RemovePost($id: ID!) {
     removePost(id: $id)
   }
 `;
@@ -131,6 +134,7 @@ export const createUser = /* GraphQL */ `
           updatedAt
           owner
           userPostsId
+          author
         }
         nextToken
       }
@@ -160,6 +164,7 @@ export const updateUser = /* GraphQL */ `
           updatedAt
           owner
           userPostsId
+          author
         }
         nextToken
       }
@@ -189,6 +194,7 @@ export const deleteUser = /* GraphQL */ `
           updatedAt
           owner
           userPostsId
+          author
         }
         nextToken
       }
@@ -224,6 +230,7 @@ export const createPost = /* GraphQL */ `
       updatedAt
       owner
       userPostsId
+      author
     }
   }
 `;
@@ -253,6 +260,7 @@ export const updatePost = /* GraphQL */ `
       updatedAt
       owner
       userPostsId
+      author
     }
   }
 `;
@@ -282,6 +290,7 @@ export const deletePost = /* GraphQL */ `
       updatedAt
       owner
       userPostsId
+      author
     }
   }
 `;

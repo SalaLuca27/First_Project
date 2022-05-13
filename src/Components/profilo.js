@@ -10,8 +10,6 @@ const Profilo = () => {
     const [error, setError] = useState();
     const [data, setData] = useState();
     const username = localStorage.getItem('sidebarUsername').toLowerCase();
-    const [utente, setUtente ] = useState({});
-    console.log(username);
 
     useEffect(() => {
         fetchMe()
@@ -28,7 +26,8 @@ const Profilo = () => {
       }, []);
     
       async function fetchMe() {
-        const apiData = await API.graphql({ query: gql(me), variables: {"username": username.toLowerCase()}});
+        const apiData = await API.graphql({ query: gql(me), variables: {"username": username.toLowerCase()}, 
+            authMode: "AMAZON_COGNITO_USER_POOLS"});
         return apiData;
       }
 
@@ -39,7 +38,7 @@ const Profilo = () => {
         <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
         <h2 className="profiloTitle">Profilo utente</h2>
             {data.data.me.map(item => 
-            <div className="profiloContent">
+            <div className="profiloContent" key={item.id}>
                 <div style={{display: 'flex', justifyContent: 'center'}}>
                     <h4>{item.username}</h4>
                 </div>

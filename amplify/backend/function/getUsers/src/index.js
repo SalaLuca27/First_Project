@@ -20,14 +20,6 @@ exports.handler = async(event, context, callback) => {
     const ret = await dbclient.scan(params).promise();
     ret.Items.map(user => utenti.push(user))
 
-    if(utenti.length > 0) {
-        return utenti
-    }
-    else{
-        return {
-            statusCode : 400,
-            body : 'Errore nella richiesta'
-        }
-    }
+    return utenti;
     
 }

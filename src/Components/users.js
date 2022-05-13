@@ -31,7 +31,7 @@ const Users = () =>  {
   }, []);
 
   async function fetchUsers() {
-    const apiData = await API.graphql({ query: gql(users)});
+    const apiData = await API.graphql({ query: gql(users), authMode: "AMAZON_COGNITO_USER_POOLS"});
     return apiData;
   }
 
@@ -39,7 +39,9 @@ const Users = () =>  {
   if (error) return <p>Error :(</p> ;
   
   async function deleteUser(userId) {
-    const delData = await API.graphql({ query: gql(remove), variables: {"id" : userId}});
+    const delData = await API.graphql({ query: gql(remove), 
+      variables: {"id" : userId},
+      authMode: "AMAZON_COGNITO_USER_POOLS"});
     return delData;
   }
 

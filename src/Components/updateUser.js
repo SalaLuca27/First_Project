@@ -18,7 +18,9 @@ const UpdateUser = () => {
     }
 
     async function updateUser() {
-        const apiData = await API.graphql({ query: gql(update), variables: { "id":  localStorage.getItem("userId"), "username": username.toLowerCase()}});
+        const apiData = await API.graphql({ query: gql(update), 
+            variables: { "id":  localStorage.getItem("userId"), "username": username.toLowerCase()},
+            authMode: "AMAZON_COGNITO_USER_POOLS" });
         return apiData;
       }
 
@@ -35,6 +37,7 @@ const UpdateUser = () => {
             })
             .catch((err) => {
                 console.log('Errore modifica: ', err);
+                alert('You are not allow to update this user');
             })
     }
 

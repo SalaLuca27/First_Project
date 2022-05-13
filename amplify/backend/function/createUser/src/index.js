@@ -8,15 +8,17 @@
 
 //lambda per la mutation createUser ==> create
 const AWS = require('aws-sdk');
+const { v4: ID } = require('uuid');
 const dbclient = new AWS.DynamoDB.DocumentClient({ region: "us-east-1" });
 
 exports.handler = async (event, context, callback) => {
     var success = false;
     var newUser = {};
     const date = new Date().toISOString();
+    console.log('event: ', event);
     const params = {
         Item: {
-            id: Date.now().toString(),
+            id: ID(),
             name: event.arguments.name,
             surname: event.arguments.surname,
             age: event.arguments.age,
@@ -38,13 +40,5 @@ exports.handler = async (event, context, callback) => {
         success = true;
     }
 
-    if (success) {
-        return params.Item;
-    }
-    else {
-        return {
-            statusCode: 400,
-            body: 'ERROR',
-        };
-    }
+    return params.Item;
 };

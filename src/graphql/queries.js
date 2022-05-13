@@ -18,6 +18,7 @@ export const users = /* GraphQL */ `
           updatedAt
           owner
           userPostsId
+          author
         }
         nextToken
       }
@@ -28,7 +29,7 @@ export const users = /* GraphQL */ `
   }
 `;
 export const user = /* GraphQL */ `
-  query User($id: String!) {
+  query User($id: ID!) {
     user(id: $id) {
       id
       name
@@ -44,6 +45,7 @@ export const user = /* GraphQL */ `
           updatedAt
           owner
           userPostsId
+          author
         }
         nextToken
       }
@@ -54,7 +56,7 @@ export const user = /* GraphQL */ `
   }
 `;
 export const me = /* GraphQL */ `
-  query Me($username: String!) {
+  query Me($username: ID!) {
     me(username: $username) {
       id
       name
@@ -70,6 +72,7 @@ export const me = /* GraphQL */ `
           updatedAt
           owner
           userPostsId
+          author
         }
         nextToken
       }
@@ -102,11 +105,12 @@ export const posts = /* GraphQL */ `
       updatedAt
       owner
       userPostsId
+      author
     }
   }
 `;
 export const post = /* GraphQL */ `
-  query Post($id: String!) {
+  query Post($id: ID!) {
     post(id: $id) {
       id
       description
@@ -128,6 +132,7 @@ export const post = /* GraphQL */ `
       updatedAt
       owner
       userPostsId
+      author
     }
   }
 `;
@@ -148,6 +153,7 @@ export const getUser = /* GraphQL */ `
           updatedAt
           owner
           userPostsId
+          author
         }
         nextToken
       }
@@ -205,6 +211,7 @@ export const getPost = /* GraphQL */ `
       updatedAt
       owner
       userPostsId
+      author
     }
   }
 `;
@@ -233,6 +240,7 @@ export const listPosts = /* GraphQL */ `
         updatedAt
         owner
         userPostsId
+        author
       }
       nextToken
     }

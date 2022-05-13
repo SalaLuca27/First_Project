@@ -24,6 +24,7 @@ export const postCreated = /* GraphQL */ `
       updatedAt
       owner
       userPostsId
+      author
     }
   }
 `;
@@ -50,6 +51,7 @@ export const postUpdated = /* GraphQL */ `
       updatedAt
       owner
       userPostsId
+      author
     }
   }
 `;
@@ -76,6 +78,7 @@ export const postDeleted = /* GraphQL */ `
       updatedAt
       owner
       userPostsId
+      author
     }
   }
 `;
@@ -96,6 +99,7 @@ export const userCreated = /* GraphQL */ `
           updatedAt
           owner
           userPostsId
+          author
         }
         nextToken
       }
@@ -122,6 +126,7 @@ export const userUpdated = /* GraphQL */ `
           updatedAt
           owner
           userPostsId
+          author
         }
         nextToken
       }
@@ -148,6 +153,7 @@ export const userDeleted = /* GraphQL */ `
           updatedAt
           owner
           userPostsId
+          author
         }
         nextToken
       }
@@ -174,6 +180,7 @@ export const onCreateUser = /* GraphQL */ `
           updatedAt
           owner
           userPostsId
+          author
         }
         nextToken
       }
@@ -200,6 +207,7 @@ export const onUpdateUser = /* GraphQL */ `
           updatedAt
           owner
           userPostsId
+          author
         }
         nextToken
       }
@@ -226,6 +234,7 @@ export const onDeleteUser = /* GraphQL */ `
           updatedAt
           owner
           userPostsId
+          author
         }
         nextToken
       }
@@ -236,8 +245,8 @@ export const onDeleteUser = /* GraphQL */ `
   }
 `;
 export const onCreatePost = /* GraphQL */ `
-  subscription OnCreatePost($owner: String) {
-    onCreatePost(owner: $owner) {
+  subscription OnCreatePost($author: String) {
+    onCreatePost(author: $author) {
       id
       description
       userId {
@@ -258,12 +267,13 @@ export const onCreatePost = /* GraphQL */ `
       updatedAt
       owner
       userPostsId
+      author
     }
   }
 `;
 export const onUpdatePost = /* GraphQL */ `
-  subscription OnUpdatePost($owner: String) {
-    onUpdatePost(owner: $owner) {
+  subscription OnUpdatePost($author: String) {
+    onUpdatePost(author: $author) {
       id
       description
       userId {
@@ -284,12 +294,13 @@ export const onUpdatePost = /* GraphQL */ `
       updatedAt
       owner
       userPostsId
+      author
     }
   }
 `;
 export const onDeletePost = /* GraphQL */ `
-  subscription OnDeletePost($owner: String) {
-    onDeletePost(owner: $owner) {
+  subscription OnDeletePost($author: String) {
+    onDeletePost(author: $author) {
       id
       description
       userId {
@@ -310,6 +321,7 @@ export const onDeletePost = /* GraphQL */ `
       updatedAt
       owner
       userPostsId
+      author
     }
   }
 `;

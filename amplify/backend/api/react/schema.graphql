@@ -4,10 +4,9 @@
 # input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
 
 type User @model @auth(rules: [
-    { allow: owner, operations: [create, read, delete, update] }, 
-    { allow: public, operations: [create, read] }
+    { allow: owner, ownerField: "owner",  operations: [create, read, update, delete] }
   ]){
-  id: String!
+  id: ID!
   name: String!
   surname: String!
   age: Int!
@@ -21,10 +20,9 @@ type User @model @auth(rules: [
 }
 
 type Post @model @auth(rules: [
-    { allow: owner, operations: [create, read, delete, update] },
-    { allow: public, operations: [read] }
+    { allow: owner, ownerField: "author", operations: [create, read, update, delete] }
   ]){
-  id: String!
+  id: ID!
   description: String!
   userId: User @belongsTo
   createdAt: AWSDateTime!
@@ -36,39 +34,49 @@ type Post @model @auth(rules: [
 type Query {
   users: [User!]!
     @function(name: "getUsers-${env}")
+    @aws_cognito_user_pools
     
-  user(id: String!) : User!
+  user(id: ID!) : User!
     @function(name: "getUser-${env}")
+    @aws_cognito_user_pools
     
-  me(username: String!): [User!]!
+  me(username: ID!): [User!]!
     @function(name: "getMyData-${env}")
+    @aws_cognito_user_pools
 
   posts: [Post!]!
     @function(name: "getPosts-${env}")
+    @aws_cognito_user_pools
 
-  post(id: String!) : Post!
+  post(id: ID!) : Post!
     @function(name: "getPost-${env}")
+    @aws_cognito_user_pools
 }
 
 type Mutation {
   login(username: String!, password: String!) : String!
 
   create(name: String!, surname: String!, age: Int!, username: String!, password: String!): User!
-   @function(name: "createUser-${env}")
+   @function(name: "createUser-${env}") 
+   @aws_cognito_user_pools
   
-  remove(id: String!) : Boolean!
+  remove(id: ID!) : Boolean!
     @function(name: "removeUser-${env}")
+    @aws_cognito_user_pools
 
-  update(id: String!, username: String!) : Boolean!
+  update(id: ID!, username: String!) : Boolean!
     @function(name: "updateUser-${env}")
+    @aws_cognito_user_pools
 
   newPost(description: String!) : Post!
     @function(name: "createPost-${env}")
+    @aws_cognito_user_pools
 
-  modifyPost(id: String!, description: String!, userId: String!) : Post!
+  modifyPost(id: ID!, description: String!, userId: ID!) : Post!
 
-  removePost(id: String!) : Boolean!
+  removePost(id: ID!) : Boolean!
     @function(name: "removePost-${env}")
+    @aws_cognito_user_pools
 }
 
 type Subscription {

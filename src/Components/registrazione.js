@@ -1,11 +1,11 @@
 import { ROUTES } from "../Utils/routes";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Auth } from "aws-amplify";
 import { gql } from 'graphql-tag';
 import { API } from "aws-amplify";
-import { create, login } from "../graphql/mutations";
+import { create } from "../graphql/mutations";
 
 const Registrazione = () => {
 
@@ -59,6 +59,7 @@ const Registrazione = () => {
                 user
                     .then((data) => {
                         console.log('data:', data);
+                        // console.log('data sub: ', data.userSub.toString());
                         setOpenForm(true);
                     })
                     .catch((error) => {
@@ -81,7 +82,8 @@ const Registrazione = () => {
 
     async function createUser() {
         const apiData = await API.graphql({ query: gql(create), variables: {'name' : name, 'surname': surname,
-            'age': parseInt(age),  'username': username.toLowerCase(), 'password': password}})
+            'age': parseInt(age),  'username': username.toLowerCase(), 'password': password}, 
+            authMode: "AMAZON_COGNITO_USER_POOLS"})
         return apiData;
     }
 
@@ -91,30 +93,32 @@ const Registrazione = () => {
             confirm();
         }
 
-        await Auth.confirmSignUp(username.trim(), code.trim())
+            await Auth.confirmSignUp(username.trim(), code.trim())
             .then((data)=>{
                 console.log('dataConfirm:', data);
                 if(data === 'SUCCESS')
                 {
-                    createUser()
-                        .then((res) => { 
-                            // localStorage.setItem('myID',res.data.create.id);
-                            Auth.signIn(username, password)
-                                .then((data) => {
-                                    localStorage.setItem('sidebarUsername', data.username.toLowerCase());
-                                    localStorage.setItem("token", data.signInUserSession.accessToken.jwtToken);
-                                    navigate(ROUTES.home);
+                    Auth.signIn(username, password)
+                        .then((data) => {
+                            localStorage.setItem('sidebarUsername', data.username.toLowerCase());
+                            localStorage.setItem("token", data.signInUserSession.accessToken.jwtToken);
+                            createUser()
+                                .then((res) => {
+                                    console.log('creazione utente dalla registrazione: ', res);
                                 })
-                                .catch((error) => {
-                                    if(error){
-                                        alert('Username o password not correct');
-                                    }
+                                .catch((err) => {
+                                    console.log('Errore creazione DYNAMO: ', err);
+                                    alert('Error while saving data on DynamoDB');
+                                    Auth.deleteUser();
+                                    navigate(ROUTES.registrazione);
                                 })
+                            navigate(ROUTES.home);
                         })
-                        .catch((err) => {
-                            console.log('Errore creazione DYNAMO: ', err.errors);
-                            alert('Error while saving data on DynamoDB');
-                            window.location.reload();
+                        .catch((error) => {
+                            if(error){
+                                console.log('errore nella creazione utente dalla registrazione: ', error);
+                                alert('Username o password not correct');
+                            }
                         })
                 }
 
@@ -125,24 +129,6 @@ const Registrazione = () => {
                 navigate(ROUTES.registrazione);
             })
     }
-
-    // async function singIn(){
-    //     const apiData = await API.graphql({query: gql(login), variables: {"username": username, "password": password}});
-    //     return apiData
-    // }
-
-    // useEffect( () => {
-    //     singIn()
-    //         .then((data) => {
-    //             console.log(data);
-    //             generateToken(username, password);
-    //             navigate(ROUTES.home);
-    //         })
-    //         .catch((err) => {
-    //             console.log(err);
-    //             alert('Errore nella login');
-    //         })
-    // }, [])
 
 
     return (
@@ -185,7 +171,7 @@ const Registrazione = () => {
                 <>
                     <div className="mb-3">
                         <label className="form-label">Inserici codice OTP</label>
-                        <input type="text" className="form-control" name="code" placeholder="000000" onChange={(event)=>setCode(event.target.value)} required/>
+                        <input type="text" className="form-control" name="code" placeholder="012345" onChange={(event)=>setCode(event.target.value)} required/>
                     </div>
                     <div className = "buttonContainer">
                         <button className="btn btn-primary" onClick={confirm}>Conferma codice</button>

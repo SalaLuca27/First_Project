@@ -15,7 +15,9 @@ export default function User() {
   const [data, setData] = useState([]);
 
   async function fetchUser(id) {
-    const apiData = await API.graphql({ query: gql(user), variables: { "id":  id}});
+    const apiData = await API.graphql({ query: gql(user),
+       variables: { "id":  id},
+       authMode: "AMAZON_COGNITO_USER_POOLS"});
     return apiData;
   }
   
