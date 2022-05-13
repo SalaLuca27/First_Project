@@ -16,11 +16,9 @@ const UpdateUser = () => {
             setUsername(event.target.value);
         }
     }
-    console.log('Id utente da modificare: ', localStorage.getItem('userId'));
 
     async function updateUser() {
-        const apiData = await API.graphql({ query: gql(update), variables: { "id":  localStorage.getItem("userId"), "username": username}});
-        console.log(apiData);
+        const apiData = await API.graphql({ query: gql(update), variables: { "id":  localStorage.getItem("userId"), "username": username.toLowerCase()}});
         return apiData;
       }
 
@@ -28,9 +26,9 @@ const UpdateUser = () => {
         event.preventDefault();
         updateUser()
             .then((data) => {
-                console.log('Modifica: ', data);
                 if(data){
                     localStorage.setItem('username', '');
+                    localStorage.setItem('sidebarUsername', username.toLowerCase())
                     navigate(ROUTES.user);
                     window.location.reload();
                 }

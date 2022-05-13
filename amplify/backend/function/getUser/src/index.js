@@ -16,10 +16,6 @@ var dbclient = new AWS.DynamoDB.DocumentClient({region: "us-east-1"});
 exports.handler = async(event, context, callback) => {
     var success = true;
     const id = event.arguments.id;
-    let params = {
-        Key: event.arguments.id,
-        TableName: process.env.API_REACT_USERTABLE_NAME
-    };
  
     const utente = await dbclient.get({
         TableName: process.env.API_REACT_USERTABLE_NAME,
@@ -27,13 +23,14 @@ exports.handler = async(event, context, callback) => {
             id
         }
       }, (err, data) => {
-          if(data.Item === undefined){
+            if(data.Item === undefined){
               success = false;
-          }
-          else{
+            }
+            else{
               success = true;
-          }
-      }).promise();
+            }
+        }
+      ).promise();
  
      if(success) {
         return utente.Item;

@@ -7,7 +7,7 @@
 Amplify Params - DO NOT EDIT */
 
 const AWS = require('aws-sdk');
-const dynamo = new AWS.DynamoDB.DocumentClient({region: "us-east-1"});
+const dbclient = new AWS.DynamoDB.DocumentClient({region: "us-east-1"});
 
 exports.handler = async(event, context, callback) => {
     const utenti = new Array();
@@ -17,7 +17,7 @@ exports.handler = async(event, context, callback) => {
         Limit: 100,
     }
 
-    const ret = await dynamo.scan(params).promise();
+    const ret = await dbclient.scan(params).promise();
     ret.Items.map(user => utenti.push(user))
 
     if(utenti.length > 0) {

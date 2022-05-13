@@ -18,11 +18,11 @@
       "function": {
         "createUser": {
           "deploymentBucketName": "amplify-amplify6a7bb416950c4-staging-103344-deployment",
-          "s3Key": "amplify-builds/createUser-4870625a627239776738-build.zip"
+          "s3Key": "amplify-builds/createUser-4b4d7842457768613871-build.zip"
         },
         "getUsers": {
           "deploymentBucketName": "amplify-amplify6a7bb416950c4-staging-103344-deployment",
-          "s3Key": "amplify-builds/getUsers-5061574938356876386a-build.zip"
+          "s3Key": "amplify-builds/getUsers-4561794b635a4f314b4f-build.zip"
         },
         "removeUser": {
           "deploymentBucketName": "amplify-amplify6a7bb416950c4-staging-103344-deployment",
@@ -34,7 +34,7 @@
         },
         "getUser": {
           "deploymentBucketName": "amplify-amplify6a7bb416950c4-staging-103344-deployment",
-          "s3Key": "amplify-builds/getUser-3170334c436d6945712f-build.zip"
+          "s3Key": "amplify-builds/getUser-3371722f58724a783967-build.zip"
         },
         "getPosts": {
           "deploymentBucketName": "amplify-amplify6a7bb416950c4-staging-103344-deployment",
@@ -51,6 +51,10 @@
         "updateUser": {
           "deploymentBucketName": "amplify-amplify6a7bb416950c4-staging-103344-deployment",
           "s3Key": "amplify-builds/updateUser-76446c4359434b494a56-build.zip"
+        },
+        "getMyData": {
+          "deploymentBucketName": "amplify-amplify6a7bb416950c4-staging-103344-deployment",
+          "s3Key": "amplify-builds/getMyData-2f6e70667a4134704762-build.zip"
         }
       }
     }

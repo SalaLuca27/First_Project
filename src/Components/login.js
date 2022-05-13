@@ -21,17 +21,17 @@ const LoginUser = () => {
 
     const handleClick = async(event) => {
         if(username === '' || password === ''){
-            alert('Compilare tutti i campi');
+            alert('Compile all the fields');
         }else{
             event.preventDefault();
-            await Auth.signIn(username.trim(), password.trim())
+            await Auth.signIn(username.trim().toLowerCase(), password.trim())
                 .then((data) => {
-                    localStorage.setItem('sidebarUsername', data.username);
+                    localStorage.setItem('sidebarUsername', data.username.toLowerCase());
                     setToken(data.signInUserSession.accessToken.jwtToken);
                 })
                 .catch((error) => {
                     if(error){
-                        alert('Username o password errati');
+                        alert('Username o password not correct');
                     }
                 })
         }

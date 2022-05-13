@@ -54,8 +54,8 @@ export const user = /* GraphQL */ `
   }
 `;
 export const me = /* GraphQL */ `
-  query Me {
-    me {
+  query Me($username: String!) {
+    me(username: $username) {
       id
       name
       surname

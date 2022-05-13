@@ -42,15 +42,15 @@ const CreateUser = () => {
     const handleClick = (event) => {
         event.preventDefault();
         if(name.trim() === "" || surname.trim() === "" || age.trim() === "" || username.trim() === "" || password.trim() === ""){
-            throw window.alert('Compilare tutti i campi');
+            throw window.alert('Compile all the fields');
         }
         createUser()
-            .catch((error) => {
-                console.log('error: ', error);
-            })
             .then((data) => { 
                 console.log('data: ', data);
                 navigate(ROUTES.users);
+            })
+            .catch((error) => {
+                console.log('error: ', error);
             })
     }
 

@@ -10,12 +10,11 @@ import { gql } from 'graphql-tag';
 
 const Users = () =>  {
 
-  // const {loading, error, data} = useQuery(gql(users));
-  
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
   const [data, setData] = useState([]);
   const [err, setErr] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchUsers()
@@ -36,8 +35,6 @@ const Users = () =>  {
     return apiData;
   }
 
-  const navigate = useNavigate();
-  
   if (loading) return <p>Loading USERS...</p>;
   if (error) return <p>Error :(</p> ;
   
@@ -66,7 +63,7 @@ const Users = () =>  {
 
   return (
     <div><h4>TUTTI GLI UTENTI</h4>
-    {err ? alert('errore nella cancellazione') : ''}
+    {err ? alert('Error while removing user') : ''}
     <Table striped bordered hover variant="dark">
       <thead>
       <tr>

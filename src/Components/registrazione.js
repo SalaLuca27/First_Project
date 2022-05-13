@@ -1,11 +1,11 @@
 import { ROUTES } from "../Utils/routes";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Auth } from "aws-amplify";
 import { gql } from 'graphql-tag';
 import { API } from "aws-amplify";
-import { create } from "../graphql/mutations";
+import { create, login } from "../graphql/mutations";
 
 const Registrazione = () => {
 
@@ -17,7 +17,7 @@ const Registrazione = () => {
     const [name, setName] = useState("");
     const [surname, setSurname] = useState("");
     const [age, setAge] = useState();
-    const [openForm, setOpenForm] = useState(true);
+    const [openForm, setOpenForm] = useState(false);
     const [code, setCode] = useState("");
 
     const handleChange = (event) => {
@@ -42,7 +42,7 @@ const Registrazione = () => {
         else if(event.target.name === 'age'){
             setAge(parseInt(event.target.value));
         }
-        else{
+        else if(event.target.name === 'password'){
             setPassword(event.target.value);
         }
     }
@@ -59,12 +59,12 @@ const Registrazione = () => {
                 user
                     .then((data) => {
                         console.log('data:', data);
-                        setOpenForm(false);
+                        setOpenForm(true);
                     })
                     .catch((error) => {
                         console.log('error:', error);
                         if(error.message === 'User already exists'){
-                            alert('Username già utilizzato');
+                            alert('Username already exists');
                         }
                         else if(error.message === 'Invalid email address format.'){
                             alert('Email not valid');
@@ -80,10 +80,10 @@ const Registrazione = () => {
     }
 
     async function createUser() {
-        const apiData = await API.graphql({ query: gql(create), variables: {'name' : name, 'surname': surname, 'age': parseInt(age), 
-        'username': username, 'password': password}})
+        const apiData = await API.graphql({ query: gql(create), variables: {'name' : name, 'surname': surname,
+            'age': parseInt(age),  'username': username.toLowerCase(), 'password': password}})
         return apiData;
-      }
+    }
 
     const confirm = async() => {
         if(code.length !== 6 || code === ''){
@@ -97,14 +97,27 @@ const Registrazione = () => {
                 if(data === 'SUCCESS')
                 {
                     createUser()
-                        .catch((err) => {
-                            console.log('Errore creazione DYNAMO: ', err);
-                        })
                         .then((res) => { 
-                            console.log('Data DYNAMO: ', res);
-                            navigate(ROUTES.login);
+                            // localStorage.setItem('myID',res.data.create.id);
+                            Auth.signIn(username, password)
+                                .then((data) => {
+                                    localStorage.setItem('sidebarUsername', data.username.toLowerCase());
+                                    localStorage.setItem("token", data.signInUserSession.accessToken.jwtToken);
+                                    navigate(ROUTES.home);
+                                })
+                                .catch((error) => {
+                                    if(error){
+                                        alert('Username o password not correct');
+                                    }
+                                })
+                        })
+                        .catch((err) => {
+                            console.log('Errore creazione DYNAMO: ', err.errors);
+                            alert('Error while saving data on DynamoDB');
+                            window.location.reload();
                         })
                 }
+
             })
             .catch((error)=>{
                 console.log('errorConfirm:', error);
@@ -113,10 +126,29 @@ const Registrazione = () => {
             })
     }
 
+    // async function singIn(){
+    //     const apiData = await API.graphql({query: gql(login), variables: {"username": username, "password": password}});
+    //     return apiData
+    // }
+
+    // useEffect( () => {
+    //     singIn()
+    //         .then((data) => {
+    //             console.log(data);
+    //             generateToken(username, password);
+    //             navigate(ROUTES.home);
+    //         })
+    //         .catch((err) => {
+    //             console.log(err);
+    //             alert('Errore nella login');
+    //         })
+    // }, [])
+
+
     return (
 
         <div className="form">
-            {openForm ? 
+            {!openForm ?
 
                 <form>
                     <div className="mb-3">

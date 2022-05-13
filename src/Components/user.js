@@ -13,11 +13,9 @@ export default function User() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
   const [data, setData] = useState([]);
-  const [err, setErr] = useState();
 
   async function fetchUser(id) {
     const apiData = await API.graphql({ query: gql(user), variables: { "id":  id}});
-    console.log(apiData);
     return apiData;
   }
   

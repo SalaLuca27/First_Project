@@ -5,10 +5,17 @@
     "serviceName": "AppSync",
     "gqlSchemaPath": "/Users/luca/Desktop/react/amplify/backend/api/react/schema.graphql",
     "defaultAuthType": {
-      "mode": "AMAZON_COGNITO_USER_POOLS",
-      "cognitoUserPoolId": "authreact7e96a9db"
+      "mode": "API_KEY",
+      "expirationTime": 7,
+      "apiKeyExpirationDate": "2022-05-19T13:12:35.517Z",
+      "keyDescription": ""
     },
     "conflictResolution": {},
-    "additionalAuthTypes": []
+    "additionalAuthTypes": [
+      {
+        "mode": "AMAZON_COGNITO_USER_POOLS",
+        "cognitoUserPoolId": "authreact7e96a9db"
+      }
+    ]
   }
 }
