@@ -18,7 +18,7 @@
       "function": {
         "createUser": {
           "deploymentBucketName": "amplify-amplify6a7bb416950c4-staging-103344-deployment",
-          "s3Key": "amplify-builds/createUser-456a302f666a55514538-build.zip"
+          "s3Key": "amplify-builds/createUser-646e5853764952524f69-build.zip"
         },
         "getUsers": {
           "deploymentBucketName": "amplify-amplify6a7bb416950c4-staging-103344-deployment",

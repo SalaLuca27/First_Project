@@ -3,6 +3,7 @@ import { gql, useQuery, useMutation } from "@apollo/client";
 import { Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../Utils/routes";
+import '../css/spinner.css';
 
 
 const POSTS = gql `
@@ -31,7 +32,7 @@ export default function Posts() {
 
   const [elimina, {err}] = useMutation(DELETE);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <div className="spinner"></div>;
   if (error) return <p>Error :(</p> ;
 
   const handleClick = async(postId) => {

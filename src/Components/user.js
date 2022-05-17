@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../Utils/routes";
 import { user } from "../graphql/queries";
 import { API } from "aws-amplify";
+import '../css/spinner.css';
 
 export default function User() {
   
@@ -35,7 +36,7 @@ export default function User() {
         })
   }, []);
 
-  if(loading) return <p>Loading...</p>;
+  if(loading) return <div className="spinner"></div>;
   if(error) return <p>Error :(</p>;
 
   const update = () => {

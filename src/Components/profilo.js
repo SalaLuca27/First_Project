@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 import { useEffect, useState } from 'react';
 import '../css/profilo.css';
 import { me } from '../graphql/queries';
+import '../css/spinner.css';
 
 const Profilo = () => {
     
@@ -31,7 +32,7 @@ const Profilo = () => {
         return apiData;
       }
 
-    if(loading) return <h1>Loading...</h1>
+    if(loading) return <div className='spinner'></div>
     if(error) return <h1>Error...</h1>
 
     return (

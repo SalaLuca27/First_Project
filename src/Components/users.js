@@ -6,6 +6,7 @@ import { users } from '../graphql/queries'
 import { remove } from "../graphql/mutations";
 import { API } from "aws-amplify";
 import { gql } from 'graphql-tag';
+import '../css/spinner.css';
 
 
 const Users = () =>  {
@@ -35,7 +36,7 @@ const Users = () =>  {
     return apiData;
   }
 
-  if (loading) return <p>Loading USERS...</p>;
+  if (loading) return <div className="spinner"></div>;
   if (error) return <p>Error :(</p> ;
   
   async function deleteUser(userId) {

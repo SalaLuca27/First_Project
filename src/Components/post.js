@@ -3,6 +3,7 @@ import { gql, useQuery } from "@apollo/client";
 import { Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../Utils/routes";
+import '../css/spinner.css';
 
 
 const POST = gql `
@@ -25,7 +26,7 @@ export default function Post(){
   const id = parseInt(localStorage.getItem('postId'));
   const {loading, error, data} = useQuery(POST, {variables : {"id" : id}})
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <div className="spinner"></div>;
   if (error) return <p>Error :(</p> ;
 
   const update = () => {

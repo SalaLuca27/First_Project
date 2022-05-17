@@ -5,8 +5,10 @@ import Sidebar from "../Components/Sidebar";
 import { Auth } from "aws-amplify";
 
 const RequireAuth = () => {
-    const access = localStorage.getItem("token");
-    if(access !== '') {
+
+    console.log(Auth.currentSession().then((data) => {data.getAccessToken().getJwtToken()}) !== "");
+
+    if(Auth.currentSession().then((data) => {data.getAccessToken().getJwtToken()}) !== "") {
         return <Outlet />
     }
     return <Navigate to = {ROUTES.login} />
