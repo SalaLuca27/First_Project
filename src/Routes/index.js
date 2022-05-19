@@ -6,8 +6,6 @@ import { Auth } from "aws-amplify";
 
 const RequireAuth = () => {
 
-    console.log(Auth.currentSession().then((data) => {data.getAccessToken().getJwtToken()}) !== "");
-
     if(Auth.currentSession().then((data) => {data.getAccessToken().getJwtToken()}) !== "") {
         return <Outlet />
     }
