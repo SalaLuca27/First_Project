@@ -3,10 +3,20 @@ import {UsersPage, UserPage, PostsPage, PostPage, LoginPage, HomePage, RegisterP
 import {ROUTES} from '../Utils/routes';
 import Sidebar from "../Components/Sidebar";
 import { Auth } from "aws-amplify";
+import { useEffect, useState } from "react";
 
 const RequireAuth = () => {
-
-    if(Auth.currentSession().then((data) => {data.getAccessToken().getJwtToken()}) !== "") {
+    
+    
+    useEffect ( () => {
+        Auth.currentSession().then((data) => {
+            localStorage.setItem('token', data.getAccessToken().getJwtToken());
+        })
+    })
+    
+const token = localStorage.getItem('token');
+    
+    if(token) {
         return <Outlet />
     }
     return <Navigate to = {ROUTES.login} />

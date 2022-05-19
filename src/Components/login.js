@@ -40,8 +40,8 @@ const LoginUser = () => {
     useEffect(() => {
         
         if(token !== "" && token !== 'error') {
-            localStorage.setItem("token", token)
-            navigate(ROUTES.home)
+            localStorage.setItem("token", token);
+            navigate(ROUTES.home);
         }
     },[token, navigate]);
 

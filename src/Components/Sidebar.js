@@ -19,13 +19,7 @@ const Sidebar = () => {
     }
 
     const logout = () => {
-        localStorage.setItem('userId', '');
-        localStorage.setItem('username', '');
-        localStorage.setItem('description', '');
-        localStorage.setItem('userPostId', '');
-        localStorage.setItem('token', '');
-        localStorage.setItem('postId', '');
-        localStorage.setItem('sidebarUsername', '');
+        localStorage.clear();
         Auth.signOut();
         navigate(ROUTES.login);
     }

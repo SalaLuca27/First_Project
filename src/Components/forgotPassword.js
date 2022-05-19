@@ -9,7 +9,7 @@ const ForgotPassword = () => {
 
     const navigate = useNavigate();
     const [verifyPassword, setVerifyPassword] = useState("");
-    const [username, setUsername] = ("");
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [openForm, setOpenForm] = useState(true);
     const [code, setCode] = useState("");
@@ -33,7 +33,7 @@ const ForgotPassword = () => {
         }
         if(password.length >= 8){
             if(password === verifyPassword){
-                let user = Auth.forgotPasswordSubmit(username.trim(), code.trim(), password.trim());
+                let user = Auth.forgotPasswordSubmit(username, code, password);
                 console.log('user:', user);
                 user
                     .then((data) => {
@@ -60,7 +60,7 @@ const ForgotPassword = () => {
 
     const sendCode = async() => {
 
-        await Auth.forgotPassword(username.trim())
+        await Auth.forgotPassword(username)
             .then((data)=>{
                 console.log('data:', data);
                 setOpenForm(false);
