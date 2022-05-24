@@ -2,7 +2,6 @@ import { ROUTES } from "../Utils/routes";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import { Auth } from "aws-amplify";
 
 const ForgotPassword = () => {
@@ -66,7 +65,10 @@ const ForgotPassword = () => {
                 setOpenForm(false);
             })
             .catch((error)=>{
-                console.log('error:', error);
+                console.log('errore:', error);
+                if(error){
+                    alert('User ' + username.toUpperCase() + ' not found');
+                }
             })
     }
 
