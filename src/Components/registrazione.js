@@ -104,7 +104,7 @@ const Registrazione = () => {
                             localStorage.setItem("token", data.signInUserSession.accessToken.jwtToken);
                             createUser()
                                 .then((res) => {
-                                    console.log('creazione utente dalla registrazione: ', res);
+                                    console.log('creazione utente dalla registrazione: ', res.data.create);
                                 })
                                 .catch((err) => {
                                     console.log('Errore creazione DYNAMO: ', err);
