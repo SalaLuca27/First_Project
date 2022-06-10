@@ -7,7 +7,7 @@
 <ol>
   <ul>DynamoDB</ul>
   <ul>Cognito</ul>
-<ol>
+</ol>
 <h1>Query</h1>
 <ol>
   <ul>GRAPHQL</ul>
