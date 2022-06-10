@@ -1,7 +1,3 @@
-Web Application using React and AWS. 
-Datas stored on DynamoDb and Cognito, use of AWS lambda to execute CRUD operations on DynamoDB. 
-I used the query lenguage GRAPHQL, to see the final result of this project go to : https://main.d1dw2ey5thsy1e.amplifyapp.com/
-
 <h1>Technologies</h1>
 <ol>
   <ul>React JS</ul>  
@@ -11,4 +7,8 @@ I used the query lenguage GRAPHQL, to see the final result of this project go to
 <ol>
   <ul>DynamoDB</ul>
   <ul>Cognito</ul>
+<ol>
+<h1>Query</h1>
+<ol>
+  <ul>GRAPHQL</ul>
 <ol>
